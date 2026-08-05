@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="ca" data-lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>datoinmo — Consultoria de dades i operacions per a agències immobiliàries</title>
+
+<meta name="description" content="Data-driven real estate, built to empower your team. Auditoria de CRM, anàlisi de portals i dashboards operatius per a agències immobiliàries a Barcelona. Fundat per un ex-data analyst d'Engel &amp; Völkers Spain.">
+<meta name="author" content="Gerard Rius Riu">
+<meta name="theme-color" content="#F6F1E7">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://datoinmo.com/">
+<meta property="og:site_name" content="datoinmo">
+<meta property="og:locale" content="ca_ES">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:title" content="datoinmo — Data-driven real estate, built to empower your team">
+<meta property="og:description" content="Auditoria de CRM, anàlisi de portals i dashboards operatius per a agències immobiliàries a Barcelona. Fundat per un ex-data analyst d'Engel &amp; Völkers Spain.">
+
+<link rel="canonical" href="https://datoinmo.com/">
+<link rel="alternate" hreflang="ca" href="https://datoinmo.com/?lang=ca">
+<link rel="alternate" hreflang="es" href="https://datoinmo.com/?lang=es">
+<link rel="alternate" hreflang="en" href="https://datoinmo.com/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://datoinmo.com/">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F6F1E7'/%3E%3Cpath fill-rule='evenodd' fill='%231F4A40' d='M20 12h24l10 10v20L44 52H20L10 42V22L20 12z M32 22a10 10 0 100 20 10 10 0 000-20z'/%3E%3Ccircle cx='32' cy='32' r='7.4' fill='none' stroke='%23C1633D' stroke-width='2.4'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,72,400;0,72,500;0,72,600;1,72,500;1,72,600&family=Karla:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,72,400;0,72,500;0,72,600;1,72,500;1,72,600&family=Karla:wght@400;500;600;700&display=swap">
+  <style>.reveal{opacity:1 !important;animation:none !important}</style>
+</noscript>
+
+<style>
+:root{
+  --bg:#F6F1E7;
+  --bg-alt:#EFE6D3;
+  --ink:#24211D;
+  --muted:#5b5346;
+  --petrol:#1F4A40;
+  --petrol-hover:#2c5c50;
+  --terracotta:#C1633D;
+  --terracotta-hover:#a84f30;
+  --ochre:#E3A63E;
+  --line:rgba(36,33,29,.12);
+  --line-strong:rgba(36,33,29,.22);
+  --sans:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --gap:112px;
+  --shell:1100px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.6;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:radial-gradient(rgba(36,33,29,.5) 1px,transparent 1px);
+  background-size:32px 32px;
+  opacity:.03;
+}
+body > *{position:relative;z-index:1}
+
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;letter-spacing:-.01em;margin:0;color:var(--ink)}
+p{margin:0}
+a{color:inherit}
+em{font-style:italic}
+
+.shell{width:100%;max-width:var(--shell);margin:0 auto;padding:0 28px}
+
+/* ---------- language visibility ---------- */
+.lang{display:none}
+html[data-lang="ca"] .lang-ca,
+html[data-lang="es"] .lang-es,
+html[data-lang="en"] .lang-en{display:revert}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  border-bottom:1px solid transparent;
+  transition:background-color .25s ease,border-color .25s ease,backdrop-filter .25s ease;
+}
+.nav.scrolled{
+  background:rgba(246,241,231,.86);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom-color:var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.logo-icon{width:26px;height:26px;flex:none}
+.logo-word{font-family:var(--serif);font-weight:500;font-size:1.28rem;letter-spacing:-.01em}
+.logo-word em{color:var(--terracotta);font-style:italic}
+.logo:hover .logo-word{color:var(--petrol)}
+
+.switch{display:flex;align-items:center;gap:2px}
+.switch button{
+  appearance:none;background:none;border:0;
+  font:600 .8rem/1 var(--sans);
+  letter-spacing:.06em;
+  color:var(--muted);
+  padding:8px 9px;border-radius:4px;cursor:pointer;
+  transition:color .18s ease,background-color .18s ease;
+}
+.switch button:hover{color:var(--ink)}
+.switch button[aria-pressed="true"]{color:var(--terracotta)}
+.switch .sep{color:var(--line-strong);font-size:.78rem;user-select:none}
+.switch button:focus-visible,
+a:focus-visible,
+.top:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px;border-radius:4px}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-block;
+  background:var(--petrol);
+  color:var(--bg);
+  font-weight:600;
+  font-size:1rem;
+  text-decoration:none;
+  padding:15px 28px;
+  border-radius:6px;
+  transition:background-color .18s ease,transform .15s ease-out;
+  will-change:transform;
+}
+.btn:hover{background:var(--petrol-hover)}
+.btn:active{transform:scale(.97)}
+.btn-terracotta{background:var(--terracotta)}
+.btn-terracotta:hover{background:var(--terracotta-hover)}
+
+.link-cta{
+  color:var(--terracotta);
+  text-decoration:none;
+  font-weight:600;
+  border-bottom:1px solid rgba(193,99,61,.4);
+  padding-bottom:2px;
+  transition:color .18s ease,border-color .18s ease;
+}
+.link-cta:hover{color:var(--terracotta-hover);border-bottom-color:var(--terracotta-hover)}
+
+.mail-link{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:.94rem;
+  border-bottom:1px solid var(--line-strong);
+  transition:color .18s ease,border-color .18s ease;
+}
+.mail-link:hover{color:var(--ink);border-color:var(--ink)}
+
+/* ---------- sections ---------- */
+main{display:block}
+section{padding:var(--gap) 0}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+.eyebrow{
+  display:inline-block;
+  font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--terracotta);margin-bottom:18px;
+}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem);margin-bottom:52px;max-width:22ch}
+.section-lead{color:var(--muted);font-size:1.05rem;line-height:1.6;max-width:64ch;margin:-32px 0 44px}
+
+/* ---------- hero ---------- */
+.hero{padding:120px 0 0}
+.hero-inner{max-width:820px}
+h1{font-size:clamp(2.3rem,5.6vw,3.6rem);letter-spacing:-.02em;max-width:19ch}
+h1 em{font-style:italic;color:var(--terracotta)}
+.hero .sub{
+  color:var(--muted);
+  font-size:clamp(1.02rem,1.9vw,1.18rem);
+  max-width:58ch;
+  margin-top:26px;
+}
+.hero .cta-row{margin-top:40px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+/* ---------- pain panel ---------- */
+.pain-panel{
+  margin-top:44px;
+  max-width:640px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--bg-alt);
+  overflow:hidden;
+  position:relative;
+}
+
+/* ---------- interactive glow + tilt ---------- */
+.card::after,.about-card::after,.cta-banner::after,.pain-panel::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  opacity:0;transition:opacity .35s ease;
+  background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),var(--glow,rgba(193,99,61,.10)),transparent 70%);
+}
+.card:hover::after,.about-card:hover::after,.cta-banner:hover::after,.pain-panel:hover::after{opacity:1}
+.cta-banner{--glow:rgba(227,166,62,.18)}
+.pain-tabs{
+  display:flex;flex-wrap:wrap;gap:2px;
+  padding:8px;
+  border-bottom:1px solid var(--line);
+}
+.pain-tab{
+  appearance:none;background:none;border:0;cursor:pointer;
+  font:600 .78rem/1 var(--sans);
+  letter-spacing:.02em;
+  color:var(--muted);
+  padding:9px 13px;border-radius:7px;
+  transition:color .18s ease,background-color .18s ease;
+}
+.pain-tab:hover{color:var(--ink)}
+.pain-tab.active{color:var(--bg);background:var(--petrol)}
+.pain-quote{position:relative;padding:26px 28px 28px;min-height:108px}
+.pain-text{
+  display:none;
+  font-family:var(--serif);font-style:italic;
+  font-size:1.08rem;line-height:1.55;color:var(--ink);
+  margin:0;
+}
+.pain-text.active{display:block;animation:pain-in .5s ease}
+@keyframes pain-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- skyline ---------- */
+.skyline-wrap{margin-top:88px;line-height:0}
+.skyline-wrap svg{display:block;width:100%;height:auto;transition:transform .35s ease-out}
+
+/* ---------- problem ---------- */
+.problems{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 40px}
+.problem{border-left:2px solid var(--terracotta);padding-left:22px}
+.problem .label{
+  font-family:var(--serif);
+  font-size:1.02rem;font-weight:600;letter-spacing:-.005em;
+  color:var(--ink);margin-bottom:10px;
+}
+.problem p.body-text{font-size:.98rem;line-height:1.55;color:var(--muted)}
+.aside{
+  margin-top:56px;color:var(--ink);font-size:1.14rem;font-weight:500;max-width:78ch;line-height:1.5;
+  font-family:var(--serif);
+}
+
+/* ---------- services ---------- */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{
+  background:var(--bg-alt);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:32px 28px 30px;
+  display:flex;flex-direction:column;
+  transition:border-color .22s ease,transform .12s ease-out;
+  position:relative;overflow:hidden;
+}
+.card:hover{border-color:var(--line-strong)}
+.card h3{font-size:1.2rem;letter-spacing:-.01em;margin-bottom:14px}
+.card .desc{color:var(--ink);font-size:.98rem;line-height:1.55}
+.card ul{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:11px}
+.card li{
+  color:var(--muted);font-size:.9rem;line-height:1.5;
+  padding-left:16px;position:relative;
+}
+.card li::before{
+  content:"";position:absolute;left:0;top:.65em;
+  width:5px;height:1px;background:var(--muted);
+}
+.card li.result{color:var(--ink);margin-top:4px;padding-left:16px}
+.card li.result::before{background:var(--ochre);width:6px;height:6px;border-radius:50%;top:.45em}
+.card li.result b{font-weight:700}
+
+/* ---------- mid CTA banner ---------- */
+.cta-banner{
+  margin-top:56px;
+  background:var(--petrol);
+  border-radius:14px;
+  padding:44px 40px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.cta-banner::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--ochre);
+}
+.cta-banner h3{
+  color:var(--bg);font-size:clamp(1.3rem,2.6vw,1.7rem);
+  max-width:32ch;margin:0 auto 10px;
+}
+.cta-banner .sub{color:rgba(246,241,231,.68);font-size:1rem;margin-bottom:26px}
+.cta-banner .btn{padding:14px 26px}
+
+/* ---------- steps ---------- */
+.steps{display:grid;gap:0;border-top:1px solid var(--line)}
+.step{
+  display:grid;grid-template-columns:64px 1fr 1.35fr;gap:32px;align-items:start;
+  padding:32px 0;border-bottom:1px solid var(--line);
+}
+.step .n{
+  font-family:var(--serif);font-weight:600;font-size:1rem;
+  color:var(--terracotta);padding-top:2px;letter-spacing:.02em;
+}
+.step h3{font-size:1.08rem;font-weight:600;letter-spacing:-.005em;line-height:1.35}
+.step .body-text{color:var(--muted);font-size:.98rem;line-height:1.6}
+
+/* ---------- about ---------- */
+.about-card{
+  background:var(--bg-alt);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:44px;
+  display:grid;
+  grid-template-columns:250px 1fr;
+  gap:48px;
+  position:relative;overflow:hidden;
+}
+.about-id{display:flex;flex-direction:column;align-items:flex-start}
+.about-avatar{
+  width:76px;height:76px;border-radius:20px;
+  background:var(--petrol);
+  display:grid;place-items:center;
+  margin-bottom:20px;
+}
+.about-avatar svg{width:38px;height:38px}
+.about-name{font-family:var(--serif);font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+.about-role{font-family:var(--serif);font-size:1rem;color:var(--muted);margin-bottom:24px}
+.about-role em{color:var(--terracotta);font-style:italic}
+.chip-list{display:flex;flex-direction:column;gap:11px;width:100%}
+.chip{
+  font-size:.88rem;color:var(--muted);line-height:1.4;
+  padding-left:15px;position:relative;
+}
+.chip::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--terracotta)}
+.chip a{color:var(--muted);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:3px}
+.chip a:hover{color:var(--terracotta);text-decoration-color:var(--terracotta)}
+.about-text p{font-size:1.04rem;line-height:1.7;color:var(--ink)}
+.about-text p + p{
+  margin-top:22px;
+  font-weight:500;
+  font-size:1.14rem;
+  line-height:1.55;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+}
+
+/* ---------- final cta ---------- */
+.final{border-top:1px solid var(--line);text-align:center;padding:132px 0}
+.final h2{margin:0 auto 20px;max-width:24ch;font-size:clamp(1.9rem,4.4vw,2.9rem)}
+.final .sub{color:var(--muted);max-width:46ch;margin:0 auto 40px;font-size:1.05rem}
+.final .cta-row{display:flex;flex-direction:column;align-items:center;gap:18px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:36px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer p{color:var(--muted);font-size:.86rem}
+.footer-links{display:flex;gap:18px}
+.footer-links a{color:var(--muted);font-size:.86rem;text-decoration:none;border-bottom:1px solid transparent}
+.footer-links a:hover{color:var(--terracotta);border-color:var(--terracotta)}
+
+/* ---------- back to top ---------- */
+.top{
+  position:fixed;right:22px;bottom:22px;z-index:40;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(246,241,231,.9);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--line-strong);
+  color:var(--muted);font-size:1rem;line-height:1;
+  display:grid;place-items:center;cursor:pointer;
+  opacity:0;visibility:hidden;transform:translateY(6px);
+  box-shadow:0 4px 16px rgba(36,33,29,.08);
+  transition:opacity .25s ease,transform .25s ease,visibility .25s ease,color .18s ease,border-color .18s ease;
+}
+.top.show{opacity:1;visibility:visible;transform:none}
+.top:hover{color:var(--terracotta);border-color:var(--terracotta)}
+
+/* ---------- reveal ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.reveal{opacity:0}
+.reveal.in{animation:rise .7s cubic-bezier(.22,.7,.3,1) forwards}
+.reveal.d1{animation-delay:.08s}
+.reveal.d2{animation-delay:.16s}
+.reveal.d3{animation-delay:.24s}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .services{grid-template-columns:1fr 1fr;gap:20px}
+  .step{grid-template-columns:44px 1fr;gap:20px;row-gap:12px}
+  .step .body-text{grid-column:2}
+  .about-card{grid-template-columns:1fr;gap:32px}
+  .about-id{flex-direction:row;align-items:center;flex-wrap:wrap;gap:16px}
+  .about-avatar{margin-bottom:0}
+}
+@media (max-width:768px){
+  :root{--gap:72px}
+  body{font-size:16px}
+  .shell{padding:0 22px}
+  .hero{padding:96px 0 0}
+  h1{max-width:none}
+  h2{margin-bottom:36px}
+  .problems{grid-template-columns:1fr 1fr}
+  .final{padding:88px 0}
+  .about-card{padding:30px 26px}
+  .btn{display:block;text-align:center}
+  .cta-row .btn{width:100%}
+  .top{right:16px;bottom:16px}
+  .skyline-wrap{margin-top:56px}
+  .cta-banner{padding:36px 26px}
+}
+@media (max-width:600px){
+  .problems{grid-template-columns:1fr}
+  .services{grid-template-columns:1fr}
+  .footer-inner{flex-direction:column;align-items:flex-start;gap:14px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-delay:0ms !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal{opacity:1}
+  .btn:hover{transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav" id="nav">
+  <div class="shell nav-inner">
+    <a class="logo" href="#top" aria-label="datoinmo — home">
+      <svg class="logo-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path fill-rule="evenodd" fill="#1F4A40" d="M20 6h24L58 20v24L44 58H20L6 44V20L20 6z M32 24a8 8 0 100 16 8 8 0 000-16z"></path>
+        <circle cx="32" cy="32" r="6.4" fill="none" stroke="#C1633D" stroke-width="2"></circle>
+      </svg>
+      <span class="logo-word">dato<em>i</em>nmo</span>
+    </a>
+    <nav class="switch" id="switch">
+      <button type="button" data-set-lang="ca" aria-pressed="true" aria-label="Canviar l'idioma a català">CA</button>
+      <span class="sep" aria-hidden="true">|</span>
+      <button type="button" data-set-lang="es" aria-pressed="false" aria-label="Cambiar el idioma a español">ES</button>
+      <span class="sep" aria-hidden="true">|</span>
+      <button type="button" data-set-lang="en" aria-pressed="false" aria-label="Switch language to English">EN</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="shell hero-inner">
+
+      <p class="eyebrow reveal">
+        <span class="lang lang-ca" lang="ca">Consultoria de dades i operacions · Barcelona</span>
+        <span class="lang lang-es" lang="es">Consultoría de datos y operaciones · Barcelona</span>
+        <span class="lang lang-en" lang="en">Data &amp; operations consulting · Barcelona</span>
+      </p>
+
+      <h1 class="reveal d1">
+        <span class="lang lang-ca" lang="ca"><em>Dades</em> aplicades a la teva agència. Una eina per <em>potenciar</em> el teu equip.</span>
+        <span class="lang lang-es" lang="es"><em>Datos</em> aplicados a tu agencia. Una herramienta para <em>potenciar</em> tu equipo.</span>
+        <span class="lang lang-en" lang="en"><em>Data</em>-driven real estate. Built to <em>empower</em> your team.</span>
+      </h1>
+
+      <p class="sub reveal d2">
+        <span class="lang lang-ca" lang="ca">Auditoria de CRM, anàlisi de portals, dashboards operatius i automatització d'operacions internes per a agències immobiliàries a Barcelona — fets per un ex-data analyst d'Engel &amp; Völkers Spain.</span>
+        <span class="lang lang-es" lang="es">Auditoría de CRM, análisis de portales, dashboards operativos y automatización de operaciones internas para agencias inmobiliarias en Barcelona — hechos por un ex-data analyst de Engel &amp; Völkers Spain.</span>
+        <span class="lang lang-en" lang="en">CRM audits, portal performance analysis, operational dashboards, and internal operations automation for real estate agencies in Barcelona — built by a former data analyst at Engel &amp; Völkers Spain.</span>
+      </p>
+
+      <div class="cta-row reveal d3">
+        <a class="btn" href="https://calendly.com/gerard-datoinmo/30min" target="_blank" rel="noopener noreferrer">
+          <span class="lang lang-ca" lang="ca">Reserva 30 minuts</span>
+          <span class="lang lang-es" lang="es">Reserva 30 minutos</span>
+          <span class="lang lang-en" lang="en">Book 30 minutes</span>
+        </a>
+        <a class="mail-link" href="mailto:gerard@datoinmo.com?subject=Conversa%20DatoInmo">
+          <span class="lang lang-ca" lang="ca">o escriu-me a gerard@datoinmo.com</span>
+          <span class="lang lang-es" lang="es">o escríbeme a gerard@datoinmo.com</span>
+          <span class="lang lang-en" lang="en">or email gerard@datoinmo.com</span>
+        </a>
+      </div>
+
+      <div class="pain-panel reveal d3" id="pain-panel">
+        <div class="pain-tabs" role="tablist" aria-label="Pain points">
+          <button class="pain-tab active" type="button" role="tab" aria-selected="true" data-pain="revenue">
+            <span class="lang lang-ca" lang="ca">Ingressos perduts</span>
+            <span class="lang lang-es" lang="es">Ingresos perdidos</span>
+            <span class="lang lang-en" lang="en">Lost revenue</span>
+          </button>
+          <button class="pain-tab" type="button" role="tab" aria-selected="false" data-pain="marketing">
+            <span class="lang lang-ca" lang="ca">Cost de portals</span>
+            <span class="lang lang-es" lang="es">Coste de portales</span>
+            <span class="lang lang-en" lang="en">Portal spend</span>
+          </button>
+          <button class="pain-tab" type="button" role="tab" aria-selected="false" data-pain="team">
+            <span class="lang lang-ca" lang="ca">Equip a cegues</span>
+            <span class="lang lang-es" lang="es">Equipo a ciegas</span>
+            <span class="lang lang-en" lang="en">Team blind spots</span>
+          </button>
+          <button class="pain-tab" type="button" role="tab" aria-selected="false" data-pain="crm">
+            <span class="lang lang-ca" lang="ca">CRM desordenat</span>
+            <span class="lang lang-es" lang="es">CRM desordenado</span>
+            <span class="lang lang-en" lang="en">Messy CRM</span>
+          </button>
+        </div>
+        <div class="pain-quote">
+          <p class="pain-text active" data-pain="revenue">
+            <span class="lang lang-ca" lang="ca">«A agències de referència he vist com milers d'euros en operacions es perden per una resposta tardana. En l'immobiliari, la conversió es juga en minuts, no en hores.»</span>
+            <span class="lang lang-es" lang="es">«En agencias de referencia he visto cómo se pierden miles de euros en operaciones por una respuesta tardía. En el inmobiliario, la conversión se juega en minutos, no en horas.»</span>
+            <span class="lang lang-en" lang="en">"In top agencies, I've seen thousands of euros in deals lost to delayed responses. In real estate, conversion is decided in minutes, not hours."</span>
+          </p>
+          <p class="pain-text" data-pain="marketing">
+            <span class="lang lang-ca" lang="ca">«A agències de referència he vist cremar milers d'euros en portals immobiliaris mentre els leads es perden per falta de seguiment i gestió de dades.»</span>
+            <span class="lang lang-es" lang="es">«En agencias de referencia he visto quemar miles de euros en portales inmobiliarios mientras los leads se pierden por falta de seguimiento y gestión de datos.»</span>
+            <span class="lang lang-en" lang="en">"In top agencies, I've seen thousands of euros burned on real estate portals while leads get lost due to a lack of tracking and data management."</span>
+          </p>
+          <p class="pain-text" data-pain="team">
+            <span class="lang lang-ca" lang="ca">«A agències de referència he vist equips immobiliaris treballar a les cegues, sense dades per saber quins leads tenen prioritat ni quan cal actuar.»</span>
+            <span class="lang lang-es" lang="es">«En agencias de referencia he visto equipos inmobiliarios trabajar a ciegas, sin datos para saber qué leads priorizar ni cuándo actuar.»</span>
+            <span class="lang lang-en" lang="en">"In top agencies, I've seen real estate teams operating in the blind, lacking data to know which leads to prioritize or when to act."</span>
+          </p>
+          <p class="pain-text" data-pain="crm">
+            <span class="lang lang-ca" lang="ca">«A agències de referència he vist CRMs plens de dades sense utilitzar i equips perdent hores en feina manual en comptes de tancar operacions.»</span>
+            <span class="lang lang-es" lang="es">«En agencias de referencia he visto CRMs llenos de datos sin utilizar y equipos perdiendo horas en trabajo manual en lugar de cerrar operaciones.»</span>
+            <span class="lang lang-en" lang="en">"In top agencies, I've seen CRMs full of unused data and teams wasting hours on manual work instead of closing deals."</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="skyline-wrap" aria-hidden="true">
+        <svg viewBox="0 0 1600 190" preserveAspectRatio="xMidYMax slice" role="presentation">
+          <g fill="#1F4A40" opacity=".13">
+            <!-- left palm -->
+            <path d="M108 190 L112 118 Q100 120 90 108 Q104 108 113 112 Q102 96 108 82 Q116 98 116 114 Q126 100 140 100 Q128 112 118 120 Q130 118 140 128 Q124 124 115 122 L120 190 Z"/>
+            <!-- low eixample buildings -->
+            <rect x="170" y="128" width="46" height="62"/>
+            <rect x="222" y="108" width="40" height="82"/>
+            <rect x="268" y="140" width="50" height="50"/>
+            <rect x="324" y="118" width="38" height="72"/>
+            <rect x="368" y="96" width="44" height="94"/>
+            <rect x="418" y="132" width="52" height="58"/>
+            <rect x="476" y="112" width="36" height="78"/>
+            <rect x="518" y="145" width="46" height="45"/>
+            <!-- sagrada familia spires -->
+            <polygon points="700,190 718,190 712,96 706,96"/>
+            <rect x="707" y="86" width="10" height="4"/>
+            <rect x="710" y="80" width="4" height="10"/>
+            <polygon points="726,190 748,190 740,58 734,58"/>
+            <rect x="733" y="46" width="8" height="4"/>
+            <rect x="736" y="40" width="4" height="10"/>
+            <polygon points="754,190 780,190 770,30 764,30"/>
+            <rect x="763" y="16" width="8" height="4"/>
+            <rect x="766" y="10" width="4" height="10"/>
+            <polygon points="788,190 810,190 802,62 796,62"/>
+            <rect x="795" y="50" width="8" height="4"/>
+            <rect x="798" y="44" width="4" height="10"/>
+            <polygon points="816,190 834,190 828,100 822,100"/>
+            <rect x="823" y="90" width="8" height="4"/>
+            <rect x="826" y="84" width="4" height="10"/>
+            <!-- mid buildings -->
+            <rect x="856" y="130" width="42" height="60"/>
+            <rect x="902" y="150" width="40" height="40"/>
+            <!-- agbar tower -->
+            <path d="M978 190 L978 108 Q978 70 1002 60 Q1026 70 1026 108 L1026 190 Z"/>
+            <!-- more buildings -->
+            <rect x="1050" y="140" width="40" height="50"/>
+            <rect x="1094" y="118" width="36" height="72"/>
+            <!-- w hotel sail -->
+            <path d="M1160 190 L1160 150 Q1160 92 1226 78 Q1200 108 1198 150 Q1196 174 1200 190 Z"/>
+            <!-- right buildings -->
+            <rect x="1256" y="132" width="44" height="58"/>
+            <rect x="1304" y="108" width="38" height="82"/>
+            <rect x="1346" y="146" width="50" height="44"/>
+            <rect x="1400" y="120" width="40" height="70"/>
+            <rect x="1444" y="140" width="46" height="50"/>
+            <!-- right palm -->
+            <path d="M1500 190 L1496 118 Q1508 120 1518 108 Q1504 108 1495 112 Q1506 96 1500 82 Q1492 98 1492 114 Q1482 100 1468 100 Q1480 112 1490 120 Q1478 118 1468 128 Q1484 124 1493 122 L1488 190 Z"/>
+          </g>
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ PROBLEMA ============ -->
+  <section id="problema">
+    <div class="shell">
+
+      <h2 class="reveal">
+        <span class="lang lang-ca" lang="ca">El diagnòstic que es repeteix agència rere agència</span>
+        <span class="lang lang-es" lang="es">El diagnóstico que se repite agencia tras agencia</span>
+        <span class="lang lang-en" lang="en">The diagnosis that repeats, agency after agency</span>
+      </h2>
+
+      <div class="problems">
+
+        <div class="problem reveal">
+          <p class="label">
+            <span class="lang lang-ca" lang="ca">Temps de resposta</span>
+            <span class="lang lang-es" lang="es">Tiempo de respuesta</span>
+            <span class="lang lang-en" lang="en">Response time</span>
+          </p>
+          <p class="body-text">
+            <span class="lang lang-ca" lang="ca">Leads que triguen hores a rebre resposta, quan cada minut que passa redueix la probabilitat que arribin a contestar.</span>
+            <span class="lang lang-es" lang="es">Leads que tardan horas en recibir respuesta, cuando cada minuto que pasa reduce la probabilidad de que lleguen a contestar.</span>
+            <span class="lang lang-en" lang="en">Leads that wait hours for a reply, when every extra minute lowers the odds they ever pick up.</span>
+          </p>
+        </div>
+
+        <div class="problem reveal">
+          <p class="label">
+            <span class="lang lang-ca" lang="ca">Despesa en portals sense retorn mesurat</span>
+            <span class="lang lang-es" lang="es">Gasto en portales sin retorno medido</span>
+            <span class="lang lang-en" lang="en">Portal spend with no measured return</span>
+          </p>
+          <p class="body-text">
+            <span class="lang lang-ca" lang="ca">Milers d'euros al mes en portals sense saber quin porta compradors reals i quin porta turistes immobiliaris.</span>
+            <span class="lang lang-es" lang="es">Miles de euros al mes en portales sin saber cuál trae compradores reales y cuál trae turistas inmobiliarios.</span>
+            <span class="lang lang-en" lang="en">Thousands per month on listing portals with no idea which ones bring real buyers and which bring property tourists.</span>
+          </p>
+        </div>
+
+        <div class="problem reveal">
+          <p class="label">
+            <span class="lang lang-ca" lang="ca">CRM sense estructura</span>
+            <span class="lang lang-es" lang="es">CRM sin estructura</span>
+            <span class="lang lang-en" lang="en">An unstructured CRM</span>
+          </p>
+          <p class="body-text">
+            <span class="lang lang-ca" lang="ca">Contactes duplicats, sense etiquetes ni seguiment: anys de dades sobre compradors, propietaris i visites que ja tens — i que amb una mica d'estructura es converteixen en l'actiu més valuós de l'agència.</span>
+            <span class="lang lang-es" lang="es">Contactos duplicados, sin etiquetas ni seguimiento: años de datos sobre compradores, propietarios y visitas que ya tienes — y que con algo de estructura se convierten en el activo más valioso de la agencia.</span>
+            <span class="lang lang-en" lang="en">Duplicate contacts, no tags, no follow-up: years of data on buyers, owners, and viewings you already have — which, with the right structure, becomes the agency's single most valuable asset.</span>
+          </p>
+        </div>
+
+        <div class="problem reveal">
+          <p class="label">
+            <span class="lang lang-ca" lang="ca">Leads dispersos entre canals</span>
+            <span class="lang lang-es" lang="es">Leads dispersos entre canales</span>
+            <span class="lang lang-en" lang="en">Leads scattered across channels</span>
+          </p>
+          <p class="body-text">
+            <span class="lang lang-ca" lang="ca">WhatsApp, portals, formularis web i trucades — cada canal amb el seu propi registre, sense una visió única del lead.</span>
+            <span class="lang lang-es" lang="es">WhatsApp, portales, formularios web y llamadas — cada canal con su propio registro, sin una visión única del lead.</span>
+            <span class="lang lang-en" lang="en">WhatsApp, portals, web forms, and calls — each with its own record, with no single view of the lead.</span>
+          </p>
+        </div>
+
+        <div class="problem reveal">
+          <p class="label">
+            <span class="lang lang-ca" lang="ca">Rendiment de l'equip sense mesurar</span>
+            <span class="lang lang-es" lang="es">Rendimiento del equipo sin medir</span>
+            <span class="lang lang-en" lang="en">Team performance nobody measures</span>
+          </p>
+          <p class="body-text">
+            <span class="lang lang-ca" lang="ca">No saps quin agent respon més ràpid, quin tanca més visites o quin necessita suport — decideixes sense dades de l'equip.</span>
+            <span class="lang lang-es" lang="es">No sabes qué agente responde más rápido, quién cierra más visitas o quién necesita apoyo — decides sin datos del equipo.</span>
+            <span class="lang lang-en" lang="en">You don't know which agent responds fastest, closes the most viewings, or needs support — you're deciding blind on your own team.</span>
+          </p>
+        </div>
+
+        <div class="problem reveal">
+          <p class="label">
+            <span class="lang lang-ca" lang="ca">Informes fets a mà cada setmana</span>
+            <span class="lang lang-es" lang="es">Informes hechos a mano cada semana</span>
+            <span class="lang lang-en" lang="en">Reports built by hand, every week</span>
+          </p>
+          <p class="body-text">
+            <span class="lang lang-ca" lang="ca">Hores copiant números a Excel per muntar un informe que un dashboard automàtic ja hauria de generar sol.</span>
+            <span class="lang lang-es" lang="es">Horas copiando números a Excel para montar un informe que un dashboard automático ya debería generar solo.</span>
+            <span class="lang lang-en" lang="en">Hours copying numbers into Excel for a report a dashboard should already be generating on its own.</span>
+          </p>
+        </div>
+
+      </div>
+
+      <p class="aside reveal">
+        <span class="lang lang-ca" lang="ca">Cap d'aquests problemes es resol amb més tecnologia. Es resolen amb organització, observabilitat i una cultura de dades real — saber en tot moment què passa amb cada lead, cada portal i cada agent. Les agències que ho fan bé no venen més perquè treballen més: venen més perquè decideixen millor.</span>
+        <span class="lang lang-es" lang="es">Ninguno de estos problemas se resuelve con más tecnología. Se resuelven con organización, observabilidad y una cultura de datos real — saber en todo momento qué pasa con cada lead, cada portal y cada agente. Las agencias que lo hacen bien no venden más porque trabajen más: venden más porque deciden mejor.</span>
+        <span class="lang lang-en" lang="en">None of these problems get solved with more technology. They get solved with organization, observability, and a real data culture — knowing at all times what's happening with every lead, every portal, and every agent. Agencies that get this right don't sell more because they work harder — they sell more because they decide better.</span>
+      </p>
+
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ SERVEIS ============ -->
+  <section id="serveis">
+    <div class="shell">
+
+      <h2 class="reveal">
+        <span class="lang lang-ca" lang="ca">Serveis concrets</span>
+        <span class="lang lang-es" lang="es">Servicios concretos</span>
+        <span class="lang lang-en" lang="en">Concrete services</span>
+      </h2>
+
+      <p class="section-lead reveal">
+        <span class="lang lang-ca" lang="ca">No són pegats tecnològics. Són sis intervencions concretes, basades en com funciona realment una agència, que es noten al compte de resultats en setmanes.</span>
+        <span class="lang lang-es" lang="es">No son parches tecnológicos. Son seis intervenciones concretas, basadas en cómo funciona realmente una agencia, que se notan en la cuenta de resultados en semanas.</span>
+        <span class="lang lang-en" lang="en">These aren't tech patches. They're six concrete interventions, grounded in how an agency actually runs, that show up in your bottom line within weeks.</span>
+      </p>
+
+      <div class="services">
+
+        <!-- Service 1 -->
+        <article class="card reveal">
+          <h3>
+            <span class="lang lang-ca" lang="ca">Auditoria de CRM</span>
+            <span class="lang lang-es" lang="es">Auditoría de CRM</span>
+            <span class="lang lang-en" lang="en">CRM Audit</span>
+          </h3>
+          <p class="desc">
+            <span class="lang lang-ca" lang="ca">Netejo, estructuro i poso regles perquè la teva base de dades funcioni com a eina de venda, no com a magatzem de noms.</span>
+            <span class="lang lang-es" lang="es">Limpio, estructuro y pongo reglas para que tu base de datos funcione como herramienta de venta, no como almacén de nombres.</span>
+            <span class="lang lang-en" lang="en">I clean, structure, and set rules so your database works as a sales tool, not a warehouse of names.</span>
+          </p>
+          <ul>
+            <li>
+              <span class="lang lang-ca" lang="ca">Deduplicació de contactes</span>
+              <span class="lang lang-es" lang="es">Deduplicación de contactos</span>
+              <span class="lang lang-en" lang="en">Contact deduplication</span>
+            </li>
+            <li>
+              <span class="lang lang-ca" lang="ca">Taxonomia d'etiquetes per fase i canal</span>
+              <span class="lang lang-es" lang="es">Taxonomía de etiquetas por fase y canal</span>
+              <span class="lang lang-en" lang="en">Tag taxonomy by stage and channel</span>
+            </li>
+            <li>
+              <span class="lang lang-ca" lang="ca">Regles d'assignació i seguiment automàtic</span>
+              <span class="lang lang-es" lang="es">Reglas de asignación y seguimiento automático</span>
+              <span class="lang lang-en" lang="en">Auto-assignment and follow-up rules</span>
+            </li>
+            <li class="result">
+              <span class="lang lang-ca" lang="ca"><b>Resultat:</b> un CRM que et diu exactament on estan els teus leads i qui se n'ha d'ocupar.</span>
+              <span class="lang lang-es" lang="es"><b>Resultado:</b> un CRM que te dice exactamente dónde están tus leads y quién debe ocuparse.</span>
+              <span class="lang lang-en" lang="en"><b>Result:</b> a CRM that tells you exactly where your leads are and who should be handling them.</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Service 2 -->
+        <article class="card reveal d1">
+          <h3>
+            <span class="lang lang-ca" lang="ca">Anàlisi de rendiment de portals</span>
+            <span class="lang lang-es" lang="es">Análisis de rendimiento de portales</span>
+            <span class="lang lang-en" lang="en">Portal performance analysis</span>
+          </h3>
+          <p class="desc">
+            <span class="lang lang-ca" lang="ca">Mesuro cost per lead real, taxa de conversió i ROI de cada portal perquè deixis de pagar a cegues.</span>
+            <span class="lang lang-es" lang="es">Mido coste por lead real, tasa de conversión y ROI de cada portal para que dejes de pagar a ciegas.</span>
+            <span class="lang lang-en" lang="en">I measure real cost per lead, conversion rate, and ROI per portal so you stop paying blind.</span>
+          </p>
+          <ul>
+            <li>
+              <span class="lang lang-ca" lang="ca">Connexió de dades portal → CRM → venda</span>
+              <span class="lang lang-es" lang="es">Conexión de datos portal → CRM → venta</span>
+              <span class="lang lang-en" lang="en">Data pipeline: portal → CRM → closed deal</span>
+            </li>
+            <li>
+              <span class="lang lang-ca" lang="ca">Cost per lead qualificat (no per clic)</span>
+              <span class="lang lang-es" lang="es">Coste por lead cualificado (no por clic)</span>
+              <span class="lang lang-en" lang="en">Cost per qualified lead (not per click)</span>
+            </li>
+            <li>
+              <span class="lang lang-ca" lang="ca">Comparativa entre portals amb dades reals</span>
+              <span class="lang lang-es" lang="es">Comparativa entre portales con datos reales</span>
+              <span class="lang lang-en" lang="en">Portal comparison with real numbers</span>
+            </li>
+            <li class="result">
+              <span class="lang lang-ca" lang="ca"><b>Resultat:</b> saps exactament on invertir i on tallar.</span>
+              <span class="lang lang-es" lang="es"><b>Resultado:</b> sabes exactamente dónde invertir y dónde cortar.</span>
+              <span class="lang lang-en" lang="en"><b>Result:</b> you know exactly where to invest and where to cut.</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Service 3 -->
+        <article class="card reveal d2">
+          <h3>
+            <span class="lang lang-ca" lang="ca">Dashboard d'operacions</span>
+            <span class="lang lang-es" lang="es">Dashboard de operaciones</span>
+            <span class="lang lang-en" lang="en">Operations dashboard</span>
+          </h3>
+          <p class="desc">
+            <span class="lang lang-ca" lang="ca">Un panell clar amb els 5-6 números que un director d'agència necessita veure cada dilluns al matí.</span>
+            <span class="lang lang-es" lang="es">Un panel claro con los 5-6 números que un director de agencia necesita ver cada lunes por la mañana.</span>
+            <span class="lang lang-en" lang="en">A clean panel with the 5-6 numbers an agency director needs to see every Monday morning.</span>
+          </p>
+          <ul>
+            <li>
+              <span class="lang lang-ca" lang="ca">Leads nous vs contactats</span>
+              <span class="lang lang-es" lang="es">Leads nuevos vs contactados</span>
+              <span class="lang lang-en" lang="en">New leads vs contacted</span>
+            </li>
+            <li>
+              <span class="lang lang-ca" lang="ca">Temps de resposta per agent</span>
+              <span class="lang lang-es" lang="es">Tiempo de respuesta por agente</span>
+              <span class="lang lang-en" lang="en">Response time per agent</span>
+            </li>
+            <li>
+              <span class="lang lang-ca" lang="ca">Pipeline per fase · Conversió per canal</span>
+              <span class="lang lang-es" lang="es">Pipeline por fase · Conversión por canal</span>
+              <span class="lang lang-en" lang="en">Pipeline by stage · Conversion by channel</span>
+            </li>
+            <li class="result">
+              <span class="lang lang-ca" lang="ca"><b>Resultat:</b> en 2 minuts saps com va l'agència sense preguntar a ningú.</span>
+              <span class="lang lang-es" lang="es"><b>Resultado:</b> en 2 minutos sabes cómo va la agencia sin preguntar a nadie.</span>
+              <span class="lang lang-en" lang="en"><b>Result:</b> in 2 minutes you know how the agency is doing without asking anyone.</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Service 4 -->
+        <article class="card reveal">
+          <h3>
+            <span class="lang lang-ca" lang="ca">SLA de resposta a leads</span>
+            <span class="lang lang-es" lang="es">SLA de respuesta a leads</span>
+            <span class="lang lang-en" lang="en">Lead response SLA</span>
+          </h3>
+          <p class="desc">
+            <span class="lang lang-ca" lang="ca">Defineixo temps màxims de resposta per canal i munto alertes perquè cap lead quedi sense contactar més de 15 minuts.</span>
+            <span class="lang lang-es" lang="es">Defino tiempos máximos de respuesta por canal y monto alertas para que ningún lead quede sin contactar más de 15 minutos.</span>
+            <span class="lang lang-en" lang="en">I define maximum response times per channel and set up alerts so no lead goes untouched for more than 15 minutes.</span>
+          </p>
+          <ul>
+            <li>
+              <span class="lang lang-ca" lang="ca">Regles d'alerta per WhatsApp, portal i formulari</span>
+              <span class="lang lang-es" lang="es">Reglas de alerta para WhatsApp, portal y formulario</span>
+              <span class="lang lang-en" lang="en">Alert rules for WhatsApp, portal, and web forms</span>
+            </li>
+            <li>
+              <span class="lang lang-ca" lang="ca">Escalat automàtic si ningú respon</span>
+              <span class="lang lang-es" lang="es">Escalado automático si nadie responde</span>
+              <span class="lang lang-en" lang="en">Automatic escalation when nobody responds</span>
+            </li>
+            <li class="result">
+              <span class="lang lang-ca" lang="ca"><b>Resultat:</b> cap lead calent es refreda mentre algú mira el mòbil.</span>
+              <span class="lang lang-es" lang="es"><b>Resultado:</b> ningún lead caliente se enfría mientras alguien mira el móvil.</span>
+              <span class="lang lang-en" lang="en"><b>Result:</b> no hot lead goes cold while someone's looking at their phone.</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Service 5 -->
+        <article class="card reveal d1">
+          <h3>
+            <span class="lang lang-ca" lang="ca">Formació de l'equip en dades</span>
+            <span class="lang lang-es" lang="es">Formación del equipo en datos</span>
+            <span class="lang lang-en" lang="en">Team data training</span>
+          </h3>
+          <p class="desc">
+            <span class="lang lang-ca" lang="ca">Ensenyo als teus agents a fer servir el CRM i el dashboard cada dia, no només el dia que els instal·lo.</span>
+            <span class="lang lang-es" lang="es">Enseño a tus agentes a usar el CRM y el dashboard cada día, no solo el día que los instalo.</span>
+            <span class="lang lang-en" lang="en">I train your agents to actually use the CRM and dashboard every day, not just the day I install them.</span>
+          </p>
+          <ul>
+            <li>
+              <span class="lang lang-ca" lang="ca">Sessió pràctica amb casos reals de l'agència</span>
+              <span class="lang lang-es" lang="es">Sesión práctica con casos reales de la agencia</span>
+              <span class="lang lang-en" lang="en">Hands-on session with real agency cases</span>
+            </li>
+            <li>
+              <span class="lang lang-ca" lang="ca">Guia d'ús en català i castellà</span>
+              <span class="lang lang-es" lang="es">Guía de uso en castellano y catalán</span>
+              <span class="lang lang-en" lang="en">Usage guide in Catalan/Spanish</span>
+            </li>
+            <li class="result">
+              <span class="lang lang-ca" lang="ca"><b>Resultat:</b> l'equip adopta les eines en lloc d'evitar-les.</span>
+              <span class="lang lang-es" lang="es"><b>Resultado:</b> el equipo adopta las herramientas en lugar de evitarlas.</span>
+              <span class="lang lang-en" lang="en"><b>Result:</b> the team adopts the tools instead of avoiding them.</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Service 6 -->
+        <article class="card reveal d2">
+          <h3>
+            <span class="lang lang-ca" lang="ca">Automatització d'operacions internes</span>
+            <span class="lang lang-es" lang="es">Automatización de operaciones internas</span>
+            <span class="lang lang-en" lang="en">Internal operations automation</span>
+          </h3>
+          <p class="desc">
+            <span class="lang lang-ca" lang="ca">Detecto les tasques manuals que et roben hores cada setmana i les automatitzo perquè el teu equip es dediqui a vendre, no a administrar.</span>
+            <span class="lang lang-es" lang="es">Detecto las tareas manuales que te roban horas cada semana y las automatizo para que tu equipo se dedique a vender, no a administrar.</span>
+            <span class="lang lang-en" lang="en">I find the manual tasks eating hours out of your week and automate them, so your team spends time selling, not administrating.</span>
+          </p>
+          <ul>
+            <li>
+              <span class="lang lang-ca" lang="ca">Mapatge de processos: de captació a tancament</span>
+              <span class="lang lang-es" lang="es">Mapeo de procesos: de captación a cierre</span>
+              <span class="lang lang-en" lang="en">Process mapping from lead capture to closing</span>
+            </li>
+            <li>
+              <span class="lang lang-ca" lang="ca">Automatitzacions entre CRM, portals i eines de comunicació</span>
+              <span class="lang lang-es" lang="es">Automatizaciones entre CRM, portales y herramientas de comunicación</span>
+              <span class="lang lang-en" lang="en">Automations across CRM, portals, and communication tools</span>
+            </li>
+            <li class="result">
+              <span class="lang lang-ca" lang="ca"><b>Resultat:</b> menys hores administratives, més hores davant del client.</span>
+              <span class="lang lang-es" lang="es"><b>Resultado:</b> menos horas administrativas, más horas frente al cliente.</span>
+              <span class="lang lang-en" lang="en"><b>Result:</b> fewer administrative hours, more hours in front of clients.</span>
+            </li>
+          </ul>
+        </article>
+
+      </div>
+
+      <div class="cta-banner reveal">
+        <h3>
+          <span class="lang lang-ca" lang="ca">Cada projecte comença amb una conversa de 30 minuts.</span>
+          <span class="lang lang-es" lang="es">Cada proyecto empieza con una conversación de 30 minutos.</span>
+          <span class="lang lang-en" lang="en">Every project starts with a 30-minute conversation.</span>
+        </h3>
+        <p class="sub">
+          <span class="lang lang-ca" lang="ca">Sense compromís. Sense pitch de vendes.</span>
+          <span class="lang lang-es" lang="es">Sin compromiso. Sin pitch de ventas.</span>
+          <span class="lang lang-en" lang="en">No commitment. No sales pitch.</span>
+        </p>
+        <a class="btn btn-terracotta" href="https://calendly.com/gerard-datoinmo/30min" target="_blank" rel="noopener noreferrer">
+          <span class="lang lang-ca" lang="ca">Reserva la teva conversa</span>
+          <span class="lang lang-es" lang="es">Reserva tu conversación</span>
+          <span class="lang lang-en" lang="en">Book your call</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ COM FUNCIONA ============ -->
+  <section id="com-funciona">
+    <div class="shell">
+
+      <h2 class="reveal">
+        <span class="lang lang-ca" lang="ca">Com funciona</span>
+        <span class="lang lang-es" lang="es">Cómo funciona</span>
+        <span class="lang lang-en" lang="en">How it works</span>
+      </h2>
+
+      <div class="steps">
+
+        <div class="step reveal">
+          <div class="n" aria-hidden="true">01</div>
+          <h3>
+            <span class="lang lang-ca" lang="ca">Conversa inicial (30 min, gratuïta)</span>
+            <span class="lang lang-es" lang="es">Conversación inicial (30 min, gratis)</span>
+            <span class="lang lang-en" lang="en">Initial call (30 min, free)</span>
+          </h3>
+          <p class="body-text">
+            <span class="lang lang-ca" lang="ca">Em parles de la teva agència, els teus canals i el teu CRM. Jo et dic on veig problemes i si puc ajudar.</span>
+            <span class="lang lang-es" lang="es">Me cuentas sobre tu agencia, tus canales y tu CRM. Yo te digo dónde veo problemas y si puedo ayudar.</span>
+            <span class="lang lang-en" lang="en">You tell me about your agency, your channels, and your CRM. I tell you where I see problems and whether I can help.</span>
+          </p>
+        </div>
+
+        <div class="step reveal">
+          <div class="n" aria-hidden="true">02</div>
+          <h3>
+            <span class="lang lang-ca" lang="ca">Diagnòstic i proposta (1 setmana)</span>
+            <span class="lang lang-es" lang="es">Diagnóstico y propuesta (1 semana)</span>
+            <span class="lang lang-en" lang="en">Diagnosis and proposal (1 week)</span>
+          </h3>
+          <p class="body-text">
+            <span class="lang lang-ca" lang="ca">Analitzo el teu CRM, els teus portals i el teu procés de resposta a leads. Et lliuro un informe amb els números concrets (temps de resposta, cost per lead, forats al procés) i una proposta tancada amb abast, cost i terminis — sense sorpreses.</span>
+            <span class="lang lang-es" lang="es">Analizo tu CRM, tus portales y tu proceso de respuesta a leads. Te entrego un informe con los números concretos (tiempo de respuesta, coste por lead, agujeros en el proceso) y una propuesta cerrada con alcance, coste y plazos — sin sorpresas.</span>
+            <span class="lang lang-en" lang="en">I analyze your CRM, your portals, and your lead response process. You get a written report with the actual numbers (response time, cost per lead, gaps in the process) and a fixed-scope proposal with cost and timeline — no surprises.</span>
+          </p>
+        </div>
+
+        <div class="step reveal">
+          <div class="n" aria-hidden="true">03</div>
+          <h3>
+            <span class="lang lang-ca" lang="ca">Execució i transferència</span>
+            <span class="lang lang-es" lang="es">Ejecución y transferencia</span>
+            <span class="lang lang-en" lang="en">Execution and handoff</span>
+          </h3>
+          <p class="body-text">
+            <span class="lang lang-ca" lang="ca">Munto el sistema, te l'ensenyo a usar i et deixo documentació. Res de dependència: l'objectiu és que no em necessitis.</span>
+            <span class="lang lang-es" lang="es">Monto el sistema, te enseño a usarlo y te dejo documentación. Nada de dependencia: el objetivo es que no me necesites.</span>
+            <span class="lang lang-en" lang="en">I build the system, teach you to use it, and leave documentation. No lock-in: the goal is that you don't need me.</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ QUI SÓC ============ -->
+  <section id="qui-soc">
+    <div class="shell">
+
+      <h2 class="reveal">
+        <span class="lang lang-ca" lang="ca">Qui sóc</span>
+        <span class="lang lang-es" lang="es">Quién soy</span>
+        <span class="lang lang-en" lang="en">Who I am</span>
+      </h2>
+
+      <div class="about-card reveal">
+
+        <div class="about-id">
+          <div class="about-avatar" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <path fill-rule="evenodd" fill="#F6F1E7" d="M20 6h24L58 20v24L44 58H20L6 44V20L20 6z M32 24a8 8 0 100 16 8 8 0 000-16z"></path>
+              <circle cx="32" cy="32" r="6.4" fill="none" stroke="#E3A63E" stroke-width="2"></circle>
+            </svg>
+          </div>
+          <p class="about-name">Gerard Rius Riu</p>
+          <p class="about-role">
+            <span class="lang lang-ca" lang="ca">Fundador, dato<em>i</em>nmo</span>
+            <span class="lang lang-es" lang="es">Fundador, dato<em>i</em>nmo</span>
+            <span class="lang lang-en" lang="en">Founder, dato<em>i</em>nmo</span>
+          </p>
+          <div class="chip-list">
+            <p class="chip">
+              <span class="lang lang-ca" lang="ca">Ex-data analyst, Engel &amp; Völkers Spain</span>
+              <span class="lang lang-es" lang="es">Ex-data analyst, Engel &amp; Völkers Spain</span>
+              <span class="lang lang-en" lang="en">Ex-data analyst, Engel &amp; Völkers Spain</span>
+            </p>
+            <p class="chip">
+              <span class="lang lang-ca" lang="ca">Barcelona</span>
+              <span class="lang lang-es" lang="es">Barcelona</span>
+              <span class="lang lang-en" lang="en">Barcelona</span>
+            </p>
+            <p class="chip"><a href="https://www.linkedin.com/in/gerard-rius-riu/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <p>
+            <span class="lang lang-ca" lang="ca">Vaig treballar com a data analyst a Engel &amp; Völkers Spain, analitzant el rendiment comercial d'agències a tot Barcelona: temps de resposta, cost per lead, conversió per canal. Vaig veure de primera mà com canvien les decisions quan hi ha dades reals darrere — i com de rar és que una agència independent hi tingui accés.</span>
+            <span class="lang lang-es" lang="es">Trabajé como data analyst en Engel &amp; Völkers Spain, analizando el rendimiento comercial de agencias en toda Barcelona: tiempo de respuesta, coste por lead, conversión por canal. Vi de primera mano cómo cambian las decisiones cuando hay datos reales detrás — y lo poco habitual que es que una agencia independiente tenga acceso a ellos.</span>
+            <span class="lang lang-en" lang="en">I worked as a data analyst at Engel &amp; Völkers Spain, analyzing commercial performance for agencies across Barcelona: response times, cost per lead, conversion by channel. I saw firsthand how decisions change when there's real data behind them — and how rarely an independent agency gets access to it.</span>
+          </p>
+          <p>
+            <span class="lang lang-ca" lang="ca">No venc software ni paquets tancats. Dissenyo els sistemes de mesurament que la teva agència necessita, els implemento i te'ls transfereixo perquè els facis servir tu — sense dependre de mi.</span>
+            <span class="lang lang-es" lang="es">No vendo software ni paquetes cerrados. Diseño los sistemas de medición que tu agencia necesita, los implemento y te los transfiero para que los uses tú — sin depender de mí.</span>
+            <span class="lang lang-en" lang="en">I don't sell software or locked-in packages. I design the measurement systems your agency needs, implement them, and hand them over so you run them yourself — no dependency on me.</span>
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="final">
+    <div class="shell">
+
+      <h2 class="reveal">
+        <span class="lang lang-ca" lang="ca">Vols saber què diuen les teves dades?</span>
+        <span class="lang lang-es" lang="es">¿Quieres saber qué dicen tus datos?</span>
+        <span class="lang lang-en" lang="en">Want to know what your data is telling you?</span>
+      </h2>
+
+      <p class="sub reveal d1">
+        <span class="lang lang-ca" lang="ca">Reserva una primera conversa de 30 minuts sense compromís.</span>
+        <span class="lang lang-es" lang="es">Reserva una primera conversación de 30 minutos sin compromiso.</span>
+        <span class="lang lang-en" lang="en">Book a first 30-minute conversation, no strings attached.</span>
+      </p>
+
+      <div class="cta-row reveal d2">
+        <a class="btn" href="https://calendly.com/gerard-datoinmo/30min" target="_blank" rel="noopener noreferrer">
+          <span class="lang lang-ca" lang="ca">Reserva 30 minuts</span>
+          <span class="lang lang-es" lang="es">Reserva 30 minutos</span>
+          <span class="lang lang-en" lang="en">Book 30 minutes</span>
+        </a>
+        <a class="mail-link" href="mailto:gerard@datoinmo.com?subject=Conversa%20DatoInmo">gerard@datoinmo.com</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="shell footer-inner">
+    <p>© 2025 datoinmo — Gerard Rius Riu — Barcelona</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/gerard-rius-riu/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>
+    </div>
+  </div>
+</footer>
+
+<button class="top" id="top-btn" type="button" aria-label="Tornar a dalt / Volver arriba / Back to top">↑</button>
+
+<script>
+(function () {
+  var LANGS = ['ca', 'es', 'en'];
+  var KEY = 'datoinmo-lang';
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('[data-set-lang]');
+
+  function setLang(lang, persist) {
+    if (LANGS.indexOf(lang) === -1) return;
+    root.setAttribute('lang', lang);
+    root.setAttribute('data-lang', lang);
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute('aria-pressed', String(buttons[i].dataset.setLang === lang));
+    }
+    if (persist) {
+      try { localStorage.setItem(KEY, lang); } catch (e) {}
+    }
+  }
+
+  // Priority: ?lang= in URL > stored preference > browser language > Catalan
+  function initialLang() {
+    var fromUrl = new URLSearchParams(location.search).get('lang');
+    if (fromUrl && LANGS.indexOf(fromUrl) !== -1) return fromUrl;
+    try {
+      var stored = localStorage.getItem(KEY);
+      if (stored && LANGS.indexOf(stored) !== -1) return stored;
+    } catch (e) {}
+    var nav = (navigator.language || 'ca').slice(0, 2).toLowerCase();
+    return LANGS.indexOf(nav) !== -1 ? nav : 'ca';
+  }
+
+  setLang(initialLang(), false);
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function () {
+      setLang(this.dataset.setLang, true);
+    });
+  }
+
+  // Nav background on scroll + back-to-top visibility
+  var nav = document.getElementById('nav');
+  var topBtn = document.getElementById('top-btn');
+  var ticking = false;
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 24);
+      topBtn.classList.toggle('show', y > window.innerHeight * 0.8);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  topBtn.addEventListener('click', function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+  });
+
+  // Entrance animations
+  var reveals = document.querySelectorAll('.reveal');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    for (var j = 0; j < reveals.length; j++) reveals[j].classList.add('in');
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+    for (var k = 0; k < reveals.length; k++) io.observe(reveals[k]);
+  }
+
+  // Pain-point panel: click-to-select + auto-rotate
+  var painPanel = document.getElementById('pain-panel');
+  if (painPanel) {
+    var painTabs = painPanel.querySelectorAll('.pain-tab');
+    var painTexts = painPanel.querySelectorAll('.pain-text');
+    var painOrder = [];
+    for (var pt = 0; pt < painTabs.length; pt++) painOrder.push(painTabs[pt].dataset.pain);
+    var painIndex = 0;
+    var painTimer = null;
+
+    function showPain(key) {
+      for (var i = 0; i < painTabs.length; i++) {
+        var match = painTabs[i].dataset.pain === key;
+        painTabs[i].classList.toggle('active', match);
+        painTabs[i].setAttribute('aria-selected', String(match));
+      }
+      for (var j = 0; j < painTexts.length; j++) {
+        painTexts[j].classList.toggle('active', painTexts[j].dataset.pain === key);
+      }
+      painIndex = painOrder.indexOf(key);
+    }
+    function startPainTimer() {
+      clearInterval(painTimer);
+      if (reduced) return;
+      painTimer = setInterval(function () {
+        painIndex = (painIndex + 1) % painOrder.length;
+        showPain(painOrder[painIndex]);
+      }, 6000);
+    }
+    for (var pb = 0; pb < painTabs.length; pb++) {
+      painTabs[pb].addEventListener('click', function () {
+        showPain(this.dataset.pain);
+        startPainTimer();
+      });
+    }
+    startPainTimer();
+  }
+
+  // Cursor-reactive glow, tilt and magnetic buttons (fine-pointer devices only)
+  var pointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (pointerFine && !reduced) {
+    var glowEls = document.querySelectorAll('.card, .about-card, .cta-banner, .pain-panel');
+    for (var g = 0; g < glowEls.length; g++) {
+      (function (el) {
+        el.addEventListener('mousemove', function (e) {
+          var r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
+          el.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+        });
+      })(glowEls[g]);
+    }
+
+    var tiltEls = document.querySelectorAll('.card');
+    for (var t = 0; t < tiltEls.length; t++) {
+      (function (el) {
+        el.addEventListener('mousemove', function (e) {
+          var r = el.getBoundingClientRect();
+          var x = (e.clientX - r.left) / r.width - 0.5;
+          var y = (e.clientY - r.top) / r.height - 0.5;
+          el.style.transform = 'perspective(900px) rotateX(' + (y * -6) + 'deg) rotateY(' + (x * 6) + 'deg) translateY(-3px)';
+        });
+        el.addEventListener('mouseleave', function () {
+          el.style.transform = '';
+        });
+      })(tiltEls[t]);
+    }
+
+    var magEls = document.querySelectorAll('.btn');
+    for (var m = 0; m < magEls.length; m++) {
+      (function (el) {
+        el.addEventListener('mousemove', function (e) {
+          var r = el.getBoundingClientRect();
+          var x = (e.clientX - r.left - r.width / 2) * 0.25;
+          var y = (e.clientY - r.top - r.height / 2) * 0.35;
+          el.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(1.035)';
+        });
+        el.addEventListener('mouseleave', function () {
+          el.style.transform = '';
+        });
+      })(magEls[m]);
+    }
+
+    var skylineSvg = document.querySelector('.skyline-wrap svg');
+    if (skylineSvg) {
+      window.addEventListener('mousemove', function (e) {
+        var px = (e.clientX / window.innerWidth - 0.5) * 2;
+        skylineSvg.style.transform = 'translateX(' + (px * -10) + 'px)';
+      });
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
