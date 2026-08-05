@@ -359,6 +359,35 @@ h1 em{font-style:italic;color:var(--terracotta)}
 .final .sub{color:var(--muted);max-width:46ch;margin:0 auto 40px;font-size:1.05rem}
 .final .cta-row{display:flex;flex-direction:column;align-items:center;gap:18px}
 
+/* ---------- diagnostic form ---------- */
+.diagnostic-form{
+  display:grid;grid-template-columns:1fr 1fr;gap:22px 24px;
+  max-width:640px;margin:0 auto 28px;text-align:left;
+}
+.diagnostic-form .field-full,.diagnostic-form .field-check{grid-column:1 / -1}
+.field label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.01em}
+.field input,.field textarea{
+  width:100%;border:0;border-bottom:1px solid var(--line-strong);
+  background:none;font:400 1rem/1.4 var(--sans);color:var(--ink);
+  padding:8px 2px;border-radius:0;transition:border-color .18s ease;
+}
+.field textarea{resize:vertical;min-height:64px}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--terracotta)}
+.field-check label{
+  display:flex;align-items:flex-start;gap:9px;font-size:.88rem;color:var(--muted);
+  font-weight:400;cursor:pointer;text-align:left;
+}
+.field-check input{margin-top:3px;accent-color:var(--terracotta);flex:none}
+.field-check a{color:var(--terracotta);text-decoration:underline}
+.diagnostic-form .btn{grid-column:1 / -1;justify-self:center;border:0;cursor:pointer;font-family:var(--sans)}
+.diagnostic-form .btn:disabled{opacity:.6;cursor:not-allowed}
+.form-status{grid-column:1 / -1;font-size:.9rem;min-height:1.2em;margin-top:-6px}
+.form-status.success{color:var(--petrol)}
+.form-status.error{color:var(--terracotta-hover)}
+@media (max-width:600px){
+  .diagnostic-form{grid-template-columns:1fr}
+}
+
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--line);padding:36px 0}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -469,19 +498,19 @@ footer p{color:var(--muted);font-size:.86rem}
       </p>
 
       <h1 class="reveal d1">
-        <span class="lang lang-ca" lang="ca"><em>Dades</em> aplicades a la teva agència. Una eina per <em>potenciar</em> el teu equip.</span>
-        <span class="lang lang-es" lang="es"><em>Datos</em> aplicados a tu agencia. Una herramienta para <em>potenciar</em> tu equipo.</span>
-        <span class="lang lang-en" lang="en"><em>Data</em>-driven real estate. Built to <em>empower</em> your team.</span>
+        <span class="lang lang-ca" lang="ca">Amb el pas a règim general, cada agent et costa <em>uns 1.900 € al mes</em>, es tanquin operacions o no. Saps qui te'ls retorna?</span>
+        <span class="lang lang-es" lang="es">Con el paso a régimen general, cada agente te cuesta <em>unos 1.900 € al mes</em>, cierre operaciones o no. ¿Sabes quién te los devuelve?</span>
+        <span class="lang lang-en" lang="en">Since the shift to payroll, every agent costs you <em>about €1,900 a month</em> — whether they close a deal or not. Do you know who's earning it back?</span>
       </h1>
 
       <p class="sub reveal d2">
-        <span class="lang lang-ca" lang="ca">Auditoria de CRM, anàlisi de portals, dashboards operatius i automatització d'operacions internes per a agències immobiliàries a Barcelona — fets per un ex-data analyst d'Engel &amp; Völkers Spain.</span>
-        <span class="lang lang-es" lang="es">Auditoría de CRM, análisis de portales, dashboards operativos y automatización de operaciones internas para agencias inmobiliarias en Barcelona — hechos por un ex-data analyst de Engel &amp; Völkers Spain.</span>
-        <span class="lang lang-en" lang="en">CRM audits, portal performance analysis, operational dashboards, and internal operations automation for real estate agencies in Barcelona — built by a former data analyst at Engel &amp; Völkers Spain.</span>
+        <span class="lang lang-ca" lang="ca">Consultoria de dades i operacions per a agències immobiliàries a Barcelona. Fundada per un ex-data analyst d'Engel &amp; Völkers España — vaig veure aquest problema des de dins.</span>
+        <span class="lang lang-es" lang="es">Consultoría de datos y operaciones para agencias inmobiliarias en Barcelona. Fundada por un ex-data analyst de Engel &amp; Völkers España — vi este problema desde dentro.</span>
+        <span class="lang lang-en" lang="en">Data &amp; operations consulting for real estate agencies in Barcelona. Founded by an ex-data analyst from Engel &amp; Völkers Spain — I saw this problem from the inside.</span>
       </p>
 
       <div class="cta-row reveal d3">
-        <a class="btn" href="https://calendly.com/gerard-datoinmo/30min" target="_blank" rel="noopener noreferrer">
+        <a class="btn" href="#diagnostic">
           <span class="lang lang-ca" lang="ca">Reserva 30 minuts</span>
           <span class="lang lang-es" lang="es">Reserva 30 minutos</span>
           <span class="lang lang-en" lang="en">Book 30 minutes</span>
@@ -607,6 +636,12 @@ footer p{color:var(--muted);font-size:.86rem}
         <span class="lang lang-en" lang="en">The diagnosis that repeats, agency after agency</span>
       </h2>
 
+      <p class="section-lead reveal">
+        <span class="lang lang-ca" lang="ca">Cap d'aquests problemes era greu quan els agents cobraven només a comissió. Ara que et costen fix cada mes, són exactament el que decideix si els recuperes o no.</span>
+        <span class="lang lang-es" lang="es">Ninguno de estos problemas era grave cuando los agentes cobraban solo a comisión. Ahora que te cuestan fijo cada mes, son exactamente lo que decide si los recuperas o no.</span>
+        <span class="lang lang-en" lang="en">None of these were serious problems when agents were paid on commission alone. Now that every agent costs you a fixed amount each month, they're exactly what decides whether you earn it back.</span>
+      </p>
+
       <div class="problems">
 
         <div class="problem reveal">
@@ -624,14 +659,14 @@ footer p{color:var(--muted);font-size:.86rem}
 
         <div class="problem reveal">
           <p class="label">
-            <span class="lang lang-ca" lang="ca">Despesa en portals sense retorn mesurat</span>
-            <span class="lang lang-es" lang="es">Gasto en portales sin retorno medido</span>
-            <span class="lang lang-en" lang="en">Portal spend with no measured return</span>
+            <span class="lang lang-ca" lang="ca">Despesa a Idealista, Fotocasa i Habitaclia sense retorn mesurat</span>
+            <span class="lang lang-es" lang="es">Gasto en Idealista, Fotocasa y Habitaclia sin retorno medido</span>
+            <span class="lang lang-en" lang="en">Idealista, Fotocasa, and Habitaclia spend with no measured return</span>
           </p>
           <p class="body-text">
-            <span class="lang lang-ca" lang="ca">Milers d'euros al mes en portals sense saber quin porta compradors reals i quin porta turistes immobiliaris.</span>
-            <span class="lang lang-es" lang="es">Miles de euros al mes en portales sin saber cuál trae compradores reales y cuál trae turistas inmobiliarios.</span>
-            <span class="lang lang-en" lang="en">Thousands per month on listing portals with no idea which ones bring real buyers and which bring property tourists.</span>
+            <span class="lang lang-ca" lang="ca">Milers d'euros al mes a Idealista, Fotocasa i Habitaclia sense saber quin porta compradors reals i quin porta turistes immobiliaris.</span>
+            <span class="lang lang-es" lang="es">Miles de euros al mes en Idealista, Fotocasa y Habitaclia sin saber cuál trae compradores reales y cuál trae turistas inmobiliarios.</span>
+            <span class="lang lang-en" lang="en">Thousands per month on Idealista, Fotocasa, and Habitaclia with no idea which ones bring real buyers and which bring property tourists.</span>
           </p>
         </div>
 
@@ -645,45 +680,6 @@ footer p{color:var(--muted);font-size:.86rem}
             <span class="lang lang-ca" lang="ca">Contactes duplicats, sense etiquetes ni seguiment: anys de dades sobre compradors, propietaris i visites que ja tens — i que amb una mica d'estructura es converteixen en l'actiu més valuós de l'agència.</span>
             <span class="lang lang-es" lang="es">Contactos duplicados, sin etiquetas ni seguimiento: años de datos sobre compradores, propietarios y visitas que ya tienes — y que con algo de estructura se convierten en el activo más valioso de la agencia.</span>
             <span class="lang lang-en" lang="en">Duplicate contacts, no tags, no follow-up: years of data on buyers, owners, and viewings you already have — which, with the right structure, becomes the agency's single most valuable asset.</span>
-          </p>
-        </div>
-
-        <div class="problem reveal">
-          <p class="label">
-            <span class="lang lang-ca" lang="ca">Leads dispersos entre canals</span>
-            <span class="lang lang-es" lang="es">Leads dispersos entre canales</span>
-            <span class="lang lang-en" lang="en">Leads scattered across channels</span>
-          </p>
-          <p class="body-text">
-            <span class="lang lang-ca" lang="ca">WhatsApp, portals, formularis web i trucades — cada canal amb el seu propi registre, sense una visió única del lead.</span>
-            <span class="lang lang-es" lang="es">WhatsApp, portales, formularios web y llamadas — cada canal con su propio registro, sin una visión única del lead.</span>
-            <span class="lang lang-en" lang="en">WhatsApp, portals, web forms, and calls — each with its own record, with no single view of the lead.</span>
-          </p>
-        </div>
-
-        <div class="problem reveal">
-          <p class="label">
-            <span class="lang lang-ca" lang="ca">Rendiment de l'equip sense mesurar</span>
-            <span class="lang lang-es" lang="es">Rendimiento del equipo sin medir</span>
-            <span class="lang lang-en" lang="en">Team performance nobody measures</span>
-          </p>
-          <p class="body-text">
-            <span class="lang lang-ca" lang="ca">No saps quin agent respon més ràpid, quin tanca més visites o quin necessita suport — decideixes sense dades de l'equip.</span>
-            <span class="lang lang-es" lang="es">No sabes qué agente responde más rápido, quién cierra más visitas o quién necesita apoyo — decides sin datos del equipo.</span>
-            <span class="lang lang-en" lang="en">You don't know which agent responds fastest, closes the most viewings, or needs support — you're deciding blind on your own team.</span>
-          </p>
-        </div>
-
-        <div class="problem reveal">
-          <p class="label">
-            <span class="lang lang-ca" lang="ca">Informes fets a mà cada setmana</span>
-            <span class="lang lang-es" lang="es">Informes hechos a mano cada semana</span>
-            <span class="lang lang-en" lang="en">Reports built by hand, every week</span>
-          </p>
-          <p class="body-text">
-            <span class="lang lang-ca" lang="ca">Hores copiant números a Excel per muntar un informe que un dashboard automàtic ja hauria de generar sol.</span>
-            <span class="lang lang-es" lang="es">Horas copiando números a Excel para montar un informe que un dashboard automático ya debería generar solo.</span>
-            <span class="lang lang-en" lang="en">Hours copying numbers into Excel for a report a dashboard should already be generating on its own.</span>
           </p>
         </div>
 
@@ -762,9 +758,9 @@ footer p{color:var(--muted);font-size:.86rem}
             <span class="lang lang-en" lang="en">Portal performance analysis</span>
           </h3>
           <p class="desc">
-            <span class="lang lang-ca" lang="ca">Mesuro cost per lead real, taxa de conversió i ROI de cada portal perquè deixis de pagar a cegues.</span>
-            <span class="lang lang-es" lang="es">Mido coste por lead real, tasa de conversión y ROI de cada portal para que dejes de pagar a ciegas.</span>
-            <span class="lang lang-en" lang="en">I measure real cost per lead, conversion rate, and ROI per portal so you stop paying blind.</span>
+            <span class="lang lang-ca" lang="ca">Mesuro cost per lead real, taxa de conversió i ROI a Idealista, Fotocasa i Habitaclia perquè deixis de pagar a cegues.</span>
+            <span class="lang lang-es" lang="es">Mido coste por lead real, tasa de conversión y ROI en Idealista, Fotocasa y Habitaclia para que dejes de pagar a ciegas.</span>
+            <span class="lang lang-en" lang="en">I measure real cost per lead, conversion rate, and ROI across Idealista, Fotocasa, and Habitaclia so you stop paying blind.</span>
           </p>
           <ul>
             <li>
@@ -826,99 +822,6 @@ footer p{color:var(--muted);font-size:.86rem}
           </ul>
         </article>
 
-        <!-- Service 4 -->
-        <article class="card reveal">
-          <h3>
-            <span class="lang lang-ca" lang="ca">SLA de resposta a leads</span>
-            <span class="lang lang-es" lang="es">SLA de respuesta a leads</span>
-            <span class="lang lang-en" lang="en">Lead response SLA</span>
-          </h3>
-          <p class="desc">
-            <span class="lang lang-ca" lang="ca">Defineixo temps màxims de resposta per canal i munto alertes perquè cap lead quedi sense contactar més de 15 minuts.</span>
-            <span class="lang lang-es" lang="es">Defino tiempos máximos de respuesta por canal y monto alertas para que ningún lead quede sin contactar más de 15 minutos.</span>
-            <span class="lang lang-en" lang="en">I define maximum response times per channel and set up alerts so no lead goes untouched for more than 15 minutes.</span>
-          </p>
-          <ul>
-            <li>
-              <span class="lang lang-ca" lang="ca">Regles d'alerta per WhatsApp, portal i formulari</span>
-              <span class="lang lang-es" lang="es">Reglas de alerta para WhatsApp, portal y formulario</span>
-              <span class="lang lang-en" lang="en">Alert rules for WhatsApp, portal, and web forms</span>
-            </li>
-            <li>
-              <span class="lang lang-ca" lang="ca">Escalat automàtic si ningú respon</span>
-              <span class="lang lang-es" lang="es">Escalado automático si nadie responde</span>
-              <span class="lang lang-en" lang="en">Automatic escalation when nobody responds</span>
-            </li>
-            <li class="result">
-              <span class="lang lang-ca" lang="ca"><b>Resultat:</b> cap lead calent es refreda mentre algú mira el mòbil.</span>
-              <span class="lang lang-es" lang="es"><b>Resultado:</b> ningún lead caliente se enfría mientras alguien mira el móvil.</span>
-              <span class="lang lang-en" lang="en"><b>Result:</b> no hot lead goes cold while someone's looking at their phone.</span>
-            </li>
-          </ul>
-        </article>
-
-        <!-- Service 5 -->
-        <article class="card reveal d1">
-          <h3>
-            <span class="lang lang-ca" lang="ca">Formació de l'equip en dades</span>
-            <span class="lang lang-es" lang="es">Formación del equipo en datos</span>
-            <span class="lang lang-en" lang="en">Team data training</span>
-          </h3>
-          <p class="desc">
-            <span class="lang lang-ca" lang="ca">Ensenyo als teus agents a fer servir el CRM i el dashboard cada dia, no només el dia que els instal·lo.</span>
-            <span class="lang lang-es" lang="es">Enseño a tus agentes a usar el CRM y el dashboard cada día, no solo el día que los instalo.</span>
-            <span class="lang lang-en" lang="en">I train your agents to actually use the CRM and dashboard every day, not just the day I install them.</span>
-          </p>
-          <ul>
-            <li>
-              <span class="lang lang-ca" lang="ca">Sessió pràctica amb casos reals de l'agència</span>
-              <span class="lang lang-es" lang="es">Sesión práctica con casos reales de la agencia</span>
-              <span class="lang lang-en" lang="en">Hands-on session with real agency cases</span>
-            </li>
-            <li>
-              <span class="lang lang-ca" lang="ca">Guia d'ús en català i castellà</span>
-              <span class="lang lang-es" lang="es">Guía de uso en castellano y catalán</span>
-              <span class="lang lang-en" lang="en">Usage guide in Catalan/Spanish</span>
-            </li>
-            <li class="result">
-              <span class="lang lang-ca" lang="ca"><b>Resultat:</b> l'equip adopta les eines en lloc d'evitar-les.</span>
-              <span class="lang lang-es" lang="es"><b>Resultado:</b> el equipo adopta las herramientas en lugar de evitarlas.</span>
-              <span class="lang lang-en" lang="en"><b>Result:</b> the team adopts the tools instead of avoiding them.</span>
-            </li>
-          </ul>
-        </article>
-
-        <!-- Service 6 -->
-        <article class="card reveal d2">
-          <h3>
-            <span class="lang lang-ca" lang="ca">Automatització d'operacions internes</span>
-            <span class="lang lang-es" lang="es">Automatización de operaciones internas</span>
-            <span class="lang lang-en" lang="en">Internal operations automation</span>
-          </h3>
-          <p class="desc">
-            <span class="lang lang-ca" lang="ca">Detecto les tasques manuals que et roben hores cada setmana i les automatitzo perquè el teu equip es dediqui a vendre, no a administrar.</span>
-            <span class="lang lang-es" lang="es">Detecto las tareas manuales que te roban horas cada semana y las automatizo para que tu equipo se dedique a vender, no a administrar.</span>
-            <span class="lang lang-en" lang="en">I find the manual tasks eating hours out of your week and automate them, so your team spends time selling, not administrating.</span>
-          </p>
-          <ul>
-            <li>
-              <span class="lang lang-ca" lang="ca">Mapatge de processos: de captació a tancament</span>
-              <span class="lang lang-es" lang="es">Mapeo de procesos: de captación a cierre</span>
-              <span class="lang lang-en" lang="en">Process mapping from lead capture to closing</span>
-            </li>
-            <li>
-              <span class="lang lang-ca" lang="ca">Automatitzacions entre CRM, portals i eines de comunicació</span>
-              <span class="lang lang-es" lang="es">Automatizaciones entre CRM, portales y herramientas de comunicación</span>
-              <span class="lang lang-en" lang="en">Automations across CRM, portals, and communication tools</span>
-            </li>
-            <li class="result">
-              <span class="lang lang-ca" lang="ca"><b>Resultat:</b> menys hores administratives, més hores davant del client.</span>
-              <span class="lang lang-es" lang="es"><b>Resultado:</b> menos horas administrativas, más horas frente al cliente.</span>
-              <span class="lang lang-en" lang="en"><b>Result:</b> fewer administrative hours, more hours in front of clients.</span>
-            </li>
-          </ul>
-        </article>
-
       </div>
 
       <div class="cta-banner reveal">
@@ -959,14 +862,14 @@ footer p{color:var(--muted);font-size:.86rem}
         <div class="step reveal">
           <div class="n" aria-hidden="true">01</div>
           <h3>
-            <span class="lang lang-ca" lang="ca">Conversa inicial (30 min, gratuïta)</span>
-            <span class="lang lang-es" lang="es">Conversación inicial (30 min, gratis)</span>
-            <span class="lang lang-en" lang="en">Initial call (30 min, free)</span>
+            <span class="lang lang-ca" lang="ca">Radiografia Flash (45 min, gratuïta)</span>
+            <span class="lang lang-es" lang="es">Radiografía Flash (45 min, gratuita)</span>
+            <span class="lang lang-en" lang="en">Flash Diagnostic (45 min, free)</span>
           </h3>
           <p class="body-text">
-            <span class="lang lang-ca" lang="ca">Em parles de la teva agència, els teus canals i el teu CRM. Jo et dic on veig problemes i si puc ajudar.</span>
-            <span class="lang lang-es" lang="es">Me cuentas sobre tu agencia, tus canales y tu CRM. Yo te digo dónde veo problemas y si puedo ayudar.</span>
-            <span class="lang lang-en" lang="en">You tell me about your agency, your channels, and your CRM. I tell you where I see problems and whether I can help.</span>
+            <span class="lang lang-ca" lang="ca">M'ensenyes el CRM (o un export dels últims 90 dies) i et mostro tres xifres reals de la teva agència: temps de resposta, % de leads sense seguiment i cost real per lead per portal.</span>
+            <span class="lang lang-es" lang="es">Me enseñas el CRM (o un export de los últimos 90 días) y te muestro tres cifras reales de tu agencia: tiempo de respuesta, % de leads sin seguimiento y coste real por lead por portal.</span>
+            <span class="lang lang-en" lang="en">You show me your CRM (or a 90-day export) and I show you three real numbers from your own agency: response time, % of leads with no follow-up, and real cost per lead by portal.</span>
           </p>
         </div>
 
@@ -1051,6 +954,11 @@ footer p{color:var(--muted);font-size:.86rem}
             <span class="lang lang-en" lang="en">I worked as a data analyst at Engel &amp; Völkers Spain, analyzing commercial performance for agencies across Barcelona: response times, cost per lead, conversion by channel. I saw firsthand how decisions change when there's real data behind them — and how rarely an independent agency gets access to it.</span>
           </p>
           <p>
+            <span class="lang lang-ca" lang="ca">No tinc una base de dades pròpia de transaccions ni tasacions. Treballo amb les dades que ja tens tu — CRM, portals, trucades — i les faig parlar.</span>
+            <span class="lang lang-es" lang="es">No tengo una base de datos propia de transacciones ni tasaciones. Trabajo con los datos que ya tienes tú — CRM, portales, llamadas — y los hago hablar.</span>
+            <span class="lang lang-en" lang="en">I don't have my own database of transactions or valuations. I work with the data you already have — CRM, portals, calls — and make it speak.</span>
+          </p>
+          <p>
             <span class="lang lang-ca" lang="ca">No venc software ni paquets tancats. Dissenyo els sistemes de mesurament que la teva agència necessita, els implemento i te'ls transfereixo perquè els facis servir tu — sense dependre de mi.</span>
             <span class="lang lang-es" lang="es">No vendo software ni paquetes cerrados. Diseño los sistemas de medición que tu agencia necesita, los implemento y te los transfiero para que los uses tú — sin depender de mí.</span>
             <span class="lang lang-en" lang="en">I don't sell software or locked-in packages. I design the measurement systems your agency needs, implement them, and hand them over so you run them yourself — no dependency on me.</span>
@@ -1063,7 +971,7 @@ footer p{color:var(--muted);font-size:.86rem}
   </section>
 
   <!-- ============ CTA FINAL ============ -->
-  <section class="final">
+  <section class="final" id="diagnostic">
     <div class="shell">
 
       <h2 class="reveal">
@@ -1078,13 +986,88 @@ footer p{color:var(--muted);font-size:.86rem}
         <span class="lang lang-en" lang="en">Book a first 30-minute conversation, no strings attached.</span>
       </p>
 
-      <div class="cta-row reveal d2">
-        <a class="btn" href="https://calendly.com/gerard-datoinmo/30min" target="_blank" rel="noopener noreferrer">
-          <span class="lang lang-ca" lang="ca">Reserva 30 minuts</span>
-          <span class="lang lang-es" lang="es">Reserva 30 minutos</span>
-          <span class="lang lang-en" lang="en">Book 30 minutes</span>
+      <div class="reveal d2">
+        <form id="diagnostic-form" class="diagnostic-form" novalidate>
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+          <input type="hidden" name="subject" value="Nova sol·licitud — Radiografia Flash DatoInmo">
+          <input type="hidden" name="from_name" value="DatoInmo Web">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div class="field">
+            <label for="df-name">
+              <span class="lang lang-ca" lang="ca">Nom</span>
+              <span class="lang lang-es" lang="es">Nombre</span>
+              <span class="lang lang-en" lang="en">Name</span>
+            </label>
+            <input type="text" id="df-name" name="name" required>
+          </div>
+
+          <div class="field">
+            <label for="df-email">Email</label>
+            <input type="email" id="df-email" name="email" required>
+          </div>
+
+          <div class="field">
+            <label for="df-agency">
+              <span class="lang lang-ca" lang="ca">Agència</span>
+              <span class="lang lang-es" lang="es">Agencia</span>
+              <span class="lang lang-en" lang="en">Agency</span>
+            </label>
+            <input type="text" id="df-agency" name="agency" required>
+          </div>
+
+          <div class="field">
+            <label for="df-phone">
+              <span class="lang lang-ca" lang="ca">Telèfon (opcional)</span>
+              <span class="lang lang-es" lang="es">Teléfono (opcional)</span>
+              <span class="lang lang-en" lang="en">Phone (optional)</span>
+            </label>
+            <input type="tel" id="df-phone" name="phone">
+          </div>
+
+          <div class="field field-full">
+            <label for="df-message">
+              <span class="lang lang-ca" lang="ca">Missatge (opcional)</span>
+              <span class="lang lang-es" lang="es">Mensaje (opcional)</span>
+              <span class="lang lang-en" lang="en">Message (optional)</span>
+            </label>
+            <textarea id="df-message" name="message" rows="3" data-ph-ca="Explica'm breument la teva situació" data-ph-es="Cuéntame brevemente tu situación" data-ph-en="Briefly describe your situation"></textarea>
+          </div>
+
+          <div class="field-check">
+            <label>
+              <input type="checkbox" name="privacy_accepted" required>
+              <span class="lang lang-ca" lang="ca">He llegit i accepto la <a href="privacitat.html" target="_blank" rel="noopener">Política de Privacitat</a>.</span>
+              <span class="lang lang-es" lang="es">He leído y acepto la <a href="privacitat.html" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
+              <span class="lang lang-en" lang="en">I've read and accept the <a href="privacitat.html" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+            </label>
+          </div>
+
+          <div class="field-check">
+            <label>
+              <input type="checkbox" name="marketing_opt_in">
+              <span class="lang lang-ca" lang="ca">Vull rebre comunicacions comercials de DatoInmo per email.</span>
+              <span class="lang lang-es" lang="es">Quiero recibir comunicaciones comerciales de DatoInmo por email.</span>
+              <span class="lang lang-en" lang="en">I'd like to receive commercial communications from DatoInmo by email.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn" id="df-submit">
+            <span class="lang lang-ca" lang="ca">Envia la sol·licitud</span>
+            <span class="lang lang-es" lang="es">Enviar solicitud</span>
+            <span class="lang lang-en" lang="en">Send request</span>
+          </button>
+
+          <p class="form-status" id="df-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="reveal d3">
+        <a class="mail-link" href="mailto:gerard@datoinmo.com?subject=Conversa%20DatoInmo">
+          <span class="lang lang-ca" lang="ca">O escriu-me directament a gerard@datoinmo.com</span>
+          <span class="lang lang-es" lang="es">O escríbeme directamente a gerard@datoinmo.com</span>
+          <span class="lang lang-en" lang="en">Or email me directly at gerard@datoinmo.com</span>
         </a>
-        <a class="mail-link" href="mailto:gerard@datoinmo.com?subject=Conversa%20DatoInmo">gerard@datoinmo.com</a>
       </div>
 
     </div>
@@ -1098,6 +1081,16 @@ footer p{color:var(--muted);font-size:.86rem}
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/gerard-rius-riu/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>
+      <a href="avis-legal.html">
+        <span class="lang lang-ca" lang="ca">Avís Legal</span>
+        <span class="lang lang-es" lang="es">Aviso Legal</span>
+        <span class="lang lang-en" lang="en">Legal Notice</span>
+      </a>
+      <a href="privacitat.html">
+        <span class="lang lang-ca" lang="ca">Privacitat</span>
+        <span class="lang lang-es" lang="es">Privacidad</span>
+        <span class="lang lang-en" lang="en">Privacy</span>
+      </a>
     </div>
   </div>
 </footer>
@@ -1111,6 +1104,13 @@ footer p{color:var(--muted);font-size:.86rem}
   var root = document.documentElement;
   var buttons = document.querySelectorAll('[data-set-lang]');
 
+  function updatePlaceholders(lang) {
+    var phEls = document.querySelectorAll('[data-ph-' + lang + ']');
+    for (var i = 0; i < phEls.length; i++) {
+      phEls[i].setAttribute('placeholder', phEls[i].getAttribute('data-ph-' + lang));
+    }
+  }
+
   function setLang(lang, persist) {
     if (LANGS.indexOf(lang) === -1) return;
     root.setAttribute('lang', lang);
@@ -1118,6 +1118,7 @@ footer p{color:var(--muted);font-size:.86rem}
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].setAttribute('aria-pressed', String(buttons[i].dataset.setLang === lang));
     }
+    updatePlaceholders(lang);
     if (persist) {
       try { localStorage.setItem(KEY, lang); } catch (e) {}
     }
@@ -1182,6 +1183,48 @@ footer p{color:var(--muted);font-size:.86rem}
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
     for (var k = 0; k < reveals.length; k++) io.observe(reveals[k]);
+  }
+
+  // Diagnostic form: Web3Forms submit
+  var dForm = document.getElementById('diagnostic-form');
+  if (dForm) {
+    var dStatus = document.getElementById('df-status');
+    var dSubmit = document.getElementById('df-submit');
+    var dMsg = {
+      success: { ca: 'Rebut! Et responc en menys de 48 hores.', es: '¡Recibido! Te respondo en menos de 48 horas.', en: "Got it! I'll reply within 48 hours." },
+      error: { ca: 'Alguna cosa ha fallat. Torna-ho a provar o escriu-me a gerard@datoinmo.com.', es: 'Algo ha fallado. Vuelve a intentarlo o escríbeme a gerard@datoinmo.com.', en: "Something went wrong. Try again or email me at gerard@datoinmo.com." }
+    };
+    dForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      dSubmit.disabled = true;
+      dStatus.textContent = '';
+      dStatus.className = 'form-status';
+      var lang = root.getAttribute('data-lang') || 'ca';
+      var fd = new FormData(dForm);
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: fd
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.success) {
+            dStatus.textContent = dMsg.success[lang];
+            dStatus.className = 'form-status success';
+            dForm.reset();
+          } else {
+            dStatus.textContent = dMsg.error[lang];
+            dStatus.className = 'form-status error';
+          }
+        })
+        .catch(function () {
+          dStatus.textContent = dMsg.error[lang];
+          dStatus.className = 'form-status error';
+        })
+        .finally(function () {
+          dSubmit.disabled = false;
+        });
+    });
   }
 
   // Pain-point panel: click-to-select + auto-rotate
