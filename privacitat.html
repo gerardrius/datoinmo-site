@@ -55,6 +55,12 @@ a{color:inherit}
 
 .shell{width:100%;max-width:var(--shell);margin:0 auto;padding:0 28px}
 
+/* ---------- language visibility ---------- */
+.lang{display:none}
+html[data-lang="ca"] .lang-ca,
+html[data-lang="es"] .lang-es,
+html[data-lang="en"] .lang-en{display:revert}
+
 /* ---------- nav ---------- */
 .nav{border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;max-width:1100px;margin:0 auto;padding:0 28px}
@@ -63,8 +69,21 @@ a{color:inherit}
 .logo-word{font-family:var(--serif);font-weight:500;font-size:1.28rem;letter-spacing:-.01em}
 .logo-word em{color:var(--terracotta);font-style:italic}
 .logo:hover .logo-word{color:var(--petrol)}
+.nav-right{display:flex;align-items:center;gap:18px}
 .back-link{color:var(--muted);text-decoration:none;font-size:.9rem;border-bottom:1px solid var(--line-strong)}
 .back-link:hover{color:var(--terracotta);border-color:var(--terracotta)}
+.switch{display:flex;align-items:center;gap:2px}
+.switch button{
+  appearance:none;background:none;border:0;
+  font:600 .8rem/1 var(--sans);
+  letter-spacing:.06em;
+  color:var(--muted);
+  padding:8px 9px;border-radius:4px;cursor:pointer;
+  transition:color .18s ease,background-color .18s ease;
+}
+.switch button:hover{color:var(--ink)}
+.switch button[aria-pressed="true"]{color:var(--terracotta)}
+.switch .sep{color:var(--line-strong);font-size:.78rem;user-select:none}
 
 /* ---------- legal content ---------- */
 .legal{padding:64px 0 96px}
@@ -73,12 +92,7 @@ a{color:inherit}
   color:var(--terracotta);margin-bottom:14px;
 }
 .legal h1{font-size:clamp(1.9rem,4.2vw,2.6rem);letter-spacing:-.02em;margin-bottom:8px}
-.legal .updated{color:var(--muted);font-size:.9rem;margin-bottom:8px}
-.lang-note{
-  background:var(--bg-alt);border:1px solid var(--line);border-radius:10px;
-  padding:16px 20px;margin:24px 0 40px;font-size:.88rem;color:var(--muted);line-height:1.55;
-}
-.lang-note p + p{margin-top:8px}
+.legal .updated{color:var(--muted);font-size:.9rem;margin-bottom:32px}
 .legal section{padding:32px 0 0}
 .legal h2{font-size:1.35rem;margin-bottom:16px;max-width:none}
 .legal h3{font-size:1.08rem;margin-bottom:10px;max-width:none}
@@ -105,165 +119,485 @@ footer p{color:var(--muted);font-size:.86rem}
 @media (max-width:600px){
   .footer-inner{flex-direction:column;align-items:flex-start;gap:14px}
   .data-table{display:block;overflow-x:auto}
+  .nav-right{gap:10px}
 }
 </style>
 </head>
 
 <body>
 
-<header class="nav">
+<header class="nav" id="nav">
   <div class="nav-inner">
-    <a class="logo" href="index.html" aria-label="datoinmo — inici">
+    <a class="logo" href="index.html" aria-label="datoinmo">
       <svg class="logo-icon" viewBox="0 0 64 64" aria-hidden="true">
         <path fill-rule="evenodd" fill="#1F4A40" d="M20 6h24L58 20v24L44 58H20L6 44V20L20 6z M32 24a8 8 0 100 16 8 8 0 000-16z"></path>
         <circle cx="32" cy="32" r="6.4" fill="none" stroke="#C1633D" stroke-width="2"></circle>
       </svg>
       <span class="logo-word">dato<em>i</em>nmo</span>
     </a>
-    <a class="back-link" href="index.html">← Tornar a l'inici</a>
+    <div class="nav-right">
+      <nav class="switch" id="switch">
+        <button type="button" data-set-lang="ca" aria-pressed="true" aria-label="Canviar l'idioma a català">CA</button>
+        <span class="sep">/</span>
+        <button type="button" data-set-lang="es" aria-pressed="false" aria-label="Cambiar el idioma a español">ES</button>
+        <span class="sep">/</span>
+        <button type="button" data-set-lang="en" aria-pressed="false" aria-label="Switch language to English">EN</button>
+      </nav>
+      <a class="back-link" href="index.html">
+        <span class="lang lang-ca" lang="ca">← Inici</span>
+        <span class="lang lang-es" lang="es">← Inicio</span>
+        <span class="lang lang-en" lang="en">← Home</span>
+      </a>
+    </div>
   </div>
 </header>
 
 <main class="legal shell">
-  <span class="eyebrow">Informació legal</span>
-  <h1>Política de Privacitat</h1>
-  <p class="updated">Versió 1.0 · Última actualització: 21/08/2026</p>
+  <span class="eyebrow">
+    <span class="lang lang-ca" lang="ca">Informació legal</span>
+    <span class="lang lang-es" lang="es">Información legal</span>
+    <span class="lang lang-en" lang="en">Legal information</span>
+  </span>
+  <h1>
+    <span class="lang lang-ca" lang="ca">Política de Privacitat</span>
+    <span class="lang lang-es" lang="es">Política de Privacidad</span>
+    <span class="lang lang-en" lang="en">Privacy Policy</span>
+  </h1>
+  <p class="updated">
+    <span class="lang lang-ca" lang="ca">Versió 1.0 · Última actualització: 21/08/2026</span>
+    <span class="lang lang-es" lang="es">Versión 1.0 · Última actualización: 21/08/2026</span>
+    <span class="lang lang-en" lang="en">Version 1.0 · Last updated: 21/08/2026</span>
+  </p>
 
-  <div class="lang-note">
-    <p><strong>ES:</strong> Esta página está publicada únicamente en catalán por ahora. Puedes solicitar una versión traducida escribiendo a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
-    <p><strong>EN:</strong> This page is currently published in Catalan only. You can request a translated version by writing to <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
+  <!-- ============ CATALÀ ============ -->
+  <div class="lang lang-ca" lang="ca">
+    <section>
+      <h2>1. Responsable del tractament</h2>
+      <table class="id-table">
+        <tbody>
+          <tr><th>Responsable</th><td>Gerard Rius Riu</td></tr>
+          <tr><th>NIF</th><td>47970617T</td></tr>
+          <tr><th>Domicili</th><td>Passeig Francesc Macià 4</td></tr>
+          <tr><th>Correu electrònic</th><td><a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a></td></tr>
+          <tr><th>Telèfon</th><td>+34 646082316</td></tr>
+        </tbody>
+      </table>
+      <p>No s'ha designat Delegat de Protecció de Dades per no concórrer cap dels supòsits de l'art. 37 RGPD ni de l'art. 34 LOPDGDD. Per a qualsevol qüestió sobre protecció de dades pots escriure a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>2. Quines dades tractem, per a què i amb quina legitimació</h2>
+
+      <h3>2.1 Visitants de la web</h3>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Dades</th><td>Adreça IP, tipus de navegador i dispositiu, pàgines visitades</td></tr>
+          <tr><th>Finalitat</th><td>Garantir el funcionament i la seguretat del lloc; estadística agregada</td></tr>
+          <tr><th>Base jurídica</th><td>Interès legítim (art. 6.1.f RGPD) a mantenir el lloc operatiu i segur</td></tr>
+          <tr><th>Conservació</th><td>Registres del servidor: 12 mesos</td></tr>
+        </tbody>
+      </table>
+
+      <h3>2.2 Sol·licitants del diagnòstic gratuït o d'informació</h3>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Dades</th><td>Nom, email, telèfon (opcional), agència, missatge</td></tr>
+          <tr><th>Finalitat</th><td>Atendre la teva sol·licitud, realitzar el diagnòstic i remetre't el resultat; enviar-te comunicacions sobre els nostres serveis</td></tr>
+          <tr><th>Base jurídica</th><td><strong>El teu consentiment</strong> (art. 6.1.a RGPD), prestat en marcar la casella del formulari, i execució de mesures precontractuals (art. 6.1.b)</td></tr>
+          <tr><th>Conservació</th><td>24 mesos des de l'últim contacte, o fins que retiris el consentiment</td></tr>
+        </tbody>
+      </table>
+      <p>Pots <strong>retirar el teu consentiment en qualsevol moment</strong> escrivint a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a> o mitjançant l'enllaç de baixa de cada comunicació. La retirada no afecta la licitud del tractament previ.</p>
+
+      <h3>2.3 Professionals d'agències immobiliàries contactats per iniciativa nostra</h3>
+      <p>Aquesta és la secció que t'aplica <strong>si has rebut una carta o una trucada nostra sense haver-nos contactat abans.</strong> Volem ser completament transparents al respecte.</p>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Dades</th><td>Nom i cognoms, càrrec, dades de contacte professionals, idioma de preferència i agència on prestes serveis</td></tr>
+          <tr><th>Origen</th><td><strong>Fonts d'accés públic</strong>: el web corporatiu de la teva agència, la seva fitxa pública a Google Maps, els seus perfils públics en portals immobiliaris, la seva pàgina d'avís legal i, si escau, el BORME. <strong>No hem comprat les teves dades a cap tercer.</strong></td></tr>
+          <tr><th>Finalitat</th><td>Posar-nos en contacte amb tu, en la teva condició professional, per oferir-te serveis de consultoria directament relacionats amb l'activitat de la teva agència</td></tr>
+          <tr><th>Base jurídica</th><td><strong>Interès legítim</strong> (art. 6.1.f RGPD), en relació amb l'<strong>art. 19 LOPDGDD</strong>, que presumeix emparat per aquesta base el tractament de dades de contacte de professionals quan es refereixen únicament a la seva condició professional. Hem realitzat i documentat la ponderació exigida, i pots sol·licitar-nos un resum.</td></tr>
+          <tr><th>Canals</th><td>Correu postal i telèfon. <strong>No t'enviarem correu electrònic comercial llevat que ens ho hagis sol·licitat expressament.</strong></td></tr>
+          <tr><th>Conservació</th><td>12 mesos des del contacte si no hi ha resposta. Si t'hi oposes, suprimim les teves dades immediatament i conservem únicament la dada mínima imprescindible per no tornar a contactar-te.</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Tens dret a oposar-te en qualsevol moment i sense justificar el motiu.</strong> N'hi ha prou amb respondre a la carta, dir-ho per telèfon o escriure a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>. Ho farem efectiu en un màxim de 48 hores i de forma permanent.</p>
+
+      <h3>2.4 Clients</h3>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Dades</th><td>Identificatives, de contacte, facturació i les necessàries per prestar el servei</td></tr>
+          <tr><th>Finalitat</th><td>Prestació del servei contractat, facturació i obligacions fiscals</td></tr>
+          <tr><th>Base jurídica</th><td>Execució del contracte (art. 6.1.b) i compliment d'obligacions legals (art. 6.1.c)</td></tr>
+          <tr><th>Conservació</th><td>Durada de la relació i, després, els terminis de prescripció fiscal i mercantil aplicables (amb caràcter general, 6 anys)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>2.5 Dades de tercers a què accedim com a encarregats</h3>
+      <p>Quan prestem serveis de consultoria, podem accedir a dades personals dels clients o empleats de l'agència contractant. En aquest cas <strong>actuem com a encarregats del tractament</strong> (art. 28 RGPD): l'agència és la responsable i decideix sobre aquestes dades, i nosaltres les tractem únicament seguint les seves instruccions documentades i en virtut del corresponent contracte d'encàrrec.</p>
+      <p>Si les teves dades estan al CRM d'una agència que treballa amb nosaltres, <strong>adreça la teva sol·licitud a l'agència</strong>, que n'és la responsable. Si ens arriba a nosaltres, la hi traslladarem sense dilació.</p>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>3. Destinataris</h2>
+      <p>No cedim dades personals a tercers, llevat d'obligació legal.</p>
+      <p>Utilitzem proveïdors que actuen com a encarregats del tractament i que han acreditat garanties suficients (art. 28 RGPD):</p>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Tipus de proveïdor</th><th>Finalitat</th></tr>
+          <tr><td>Allotjament web i correu</td><td>Infraestructura</td></tr>
+          <tr><td>Eines ofimàtiques i d'anàlisi</td><td>Gestió interna</td></tr>
+          <tr><td>Serveis de facturació</td><td>Obligacions comptables</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>4. Transferències internacionals</h2>
+      <p><span class="pending">[PENDENT: completar segons els proveïdors contractats. Si tots tracten dades dins l'EEE, indicar: «No es realitzen transferències internacionals de dades».]</span></p>
+    </section>
+
+    <section>
+      <h2>5. Els teus drets</h2>
+      <p>Pots exercir gratuïtament els següents drets escrivint a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a> o a Passeig Francesc Macià 4, indicant el dret que exerceixes i acompanyant còpia d'un document que acrediti la teva identitat:</p>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Dret</th><th>Què suposa</th></tr>
+          <tr><td><strong>Accés</strong></td><td>Saber quines dades teves tractem i obtenir-ne una còpia</td></tr>
+          <tr><td><strong>Rectificació</strong></td><td>Corregir dades inexactes o incompletes</td></tr>
+          <tr><td><strong>Supressió</strong></td><td>Que eliminem les teves dades quan ja no siguin necessàries</td></tr>
+          <tr><td><strong>Oposició</strong></td><td>Oposar-te al tractament basat en interès legítim. <strong>En prospecció comercial, l'oposició és incondicional: n'hi ha prou amb demanar-ho</strong></td></tr>
+          <tr><td><strong>Limitació</strong></td><td>Que suspenguem el tractament mentre es resol una controvèrsia</td></tr>
+          <tr><td><strong>Portabilitat</strong></td><td>Rebre les teves dades en format estructurat i d'ús comú</td></tr>
+        </tbody>
+      </table>
+      <p>Respondrem en el termini màxim d'<strong>un mes</strong>, prorrogable per dos mesos més si la sol·licitud és complexa, informant-te de la pròrroga.</p>
+      <p>Si consideres que no hem atès correctament la teva sol·licitud, pots reclamar davant l'<strong>Agència Espanyola de Protecció de Dades</strong> (C/ Jorge Juan 6, 28001 Madrid — <a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>), sense perjudici d'acudir prèviament a nosaltres.</p>
+    </section>
+
+    <section>
+      <h2>6. Seguretat</h2>
+      <p>Apliquem les mesures tècniques i organitzatives apropiades (art. 32 RGPD): control d'accés mitjançant credencials individuals, xifratge en trànsit i en repòs, còpies de seguretat periòdiques, registre d'accessos i minimització de les dades tractades.</p>
+      <p>Les dades personals s'emmagatzemen de forma <strong>separada</strong> de la resta d'informació, de manera que una sol·licitud de supressió es pugui executar de forma completa i verificable.</p>
+    </section>
+
+    <section>
+      <h2>7. Canvis</h2>
+      <p>Podem actualitzar aquesta política per adaptar-la a canvis normatius o dels nostres serveis. La versió vigent serà sempre la publicada en aquesta pàgina, amb la seva data d'actualització. Si el canvi és substancial i t'afecta, t'ho comunicarem.</p>
+    </section>
   </div>
 
-  <section>
-    <h2>1. Responsable del tractament</h2>
-    <table class="id-table">
-      <tbody>
-        <tr><th>Responsable</th><td>Gerard Rius Riu</td></tr>
-        <tr><th>NIF</th><td>47970617T</td></tr>
-        <tr><th>Domicili</th><td>Passeig Francesc Macià 4</td></tr>
-        <tr><th>Correu electrònic</th><td><a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a></td></tr>
-        <tr><th>Telèfon</th><td>+34 646082316</td></tr>
-      </tbody>
-    </table>
-    <p>No s'ha designat Delegat de Protecció de Dades per no concórrer cap dels supòsits de l'art. 37 RGPD ni de l'art. 34 LOPDGDD. Per a qualsevol qüestió sobre protecció de dades pots escriure a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
-  </section>
+  <!-- ============ ESPAÑOL ============ -->
+  <div class="lang lang-es" lang="es">
+    <section>
+      <h2>1. Responsable del tratamiento</h2>
+      <table class="id-table">
+        <tbody>
+          <tr><th>Responsable</th><td>Gerard Rius Riu</td></tr>
+          <tr><th>NIF</th><td>47970617T</td></tr>
+          <tr><th>Domicilio</th><td>Passeig Francesc Macià 4</td></tr>
+          <tr><th>Correo electrónico</th><td><a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a></td></tr>
+          <tr><th>Teléfono</th><td>+34 646082316</td></tr>
+        </tbody>
+      </table>
+      <p>No se ha designado Delegado de Protección de Datos por no concurrir ninguno de los supuestos del art. 37 RGPD ni del art. 34 LOPDGDD. Para cualquier cuestión sobre protección de datos puedes escribir a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
+    </section>
 
-  <hr>
+    <hr>
 
-  <section>
-    <h2>2. Quines dades tractem, per a què i amb quina legitimació</h2>
+    <section>
+      <h2>2. Qué datos tratamos, para qué y con qué legitimación</h2>
 
-    <h3>2.1 Visitants de la web</h3>
-    <table class="data-table">
-      <tbody>
-        <tr><th>Dades</th><td>Adreça IP, tipus de navegador i dispositiu, pàgines visitades</td></tr>
-        <tr><th>Finalitat</th><td>Garantir el funcionament i la seguretat del lloc; estadística agregada</td></tr>
-        <tr><th>Base jurídica</th><td>Interès legítim (art. 6.1.f RGPD) a mantenir el lloc operatiu i segur</td></tr>
-        <tr><th>Conservació</th><td>Registres del servidor: 12 mesos</td></tr>
-      </tbody>
-    </table>
+      <h3>2.1 Visitantes de la web</h3>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Datos</th><td>Dirección IP, tipo de navegador y dispositivo, páginas visitadas</td></tr>
+          <tr><th>Finalidad</th><td>Garantizar el funcionamiento y la seguridad del sitio; estadística agregada</td></tr>
+          <tr><th>Base jurídica</th><td>Interés legítimo (art. 6.1.f RGPD) en mantener el sitio operativo y seguro</td></tr>
+          <tr><th>Conservación</th><td>Registros del servidor: 12 meses</td></tr>
+        </tbody>
+      </table>
 
-    <h3>2.2 Sol·licitants del diagnòstic gratuït o d'informació</h3>
-    <table class="data-table">
-      <tbody>
-        <tr><th>Dades</th><td>Nom, email, telèfon (opcional), agència, missatge</td></tr>
-        <tr><th>Finalitat</th><td>Atendre la teva sol·licitud, realitzar el diagnòstic i remetre't el resultat; enviar-te comunicacions sobre els nostres serveis</td></tr>
-        <tr><th>Base jurídica</th><td><strong>El teu consentiment</strong> (art. 6.1.a RGPD), prestat en marcar la casella del formulari, i execució de mesures precontractuals (art. 6.1.b)</td></tr>
-        <tr><th>Conservació</th><td>24 mesos des de l'últim contacte, o fins que retiris el consentiment</td></tr>
-      </tbody>
-    </table>
-    <p>Pots <strong>retirar el teu consentiment en qualsevol moment</strong> escrivint a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a> o mitjançant l'enllaç de baixa de cada comunicació. La retirada no afecta la licitud del tractament previ.</p>
+      <h3>2.2 Solicitantes del diagnóstico gratuito o de información</h3>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Datos</th><td>Nombre, email, teléfono (opcional), agencia, mensaje</td></tr>
+          <tr><th>Finalidad</th><td>Atender tu solicitud, realizar el diagnóstico y remitirte el resultado; enviarte comunicaciones sobre nuestros servicios</td></tr>
+          <tr><th>Base jurídica</th><td><strong>Tu consentimiento</strong> (art. 6.1.a RGPD), prestado al marcar la casilla del formulario, y ejecución de medidas precontractuales (art. 6.1.b)</td></tr>
+          <tr><th>Conservación</th><td>24 meses desde el último contacto, o hasta que retires el consentimiento</td></tr>
+        </tbody>
+      </table>
+      <p>Puedes <strong>retirar tu consentimiento en cualquier momento</strong> escribiendo a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a> o mediante el enlace de baja de cada comunicación. La retirada no afecta a la licitud del tratamiento previo.</p>
 
-    <h3>2.3 Professionals d'agències immobiliàries contactats per iniciativa nostra</h3>
-    <p>Aquesta és la secció que t'aplica <strong>si has rebut una carta o una trucada nostra sense haver-nos contactat abans.</strong> Volem ser completament transparents al respecte.</p>
-    <table class="data-table">
-      <tbody>
-        <tr><th>Dades</th><td>Nom i cognoms, càrrec, dades de contacte professionals, idioma de preferència i agència on prestes serveis</td></tr>
-        <tr><th>Origen</th><td><strong>Fonts d'accés públic</strong>: el web corporatiu de la teva agència, la seva fitxa pública a Google Maps, els seus perfils públics en portals immobiliaris, la seva pàgina d'avís legal i, si escau, el BORME. <strong>No hem comprat les teves dades a cap tercer.</strong></td></tr>
-        <tr><th>Finalitat</th><td>Posar-nos en contacte amb tu, en la teva condició professional, per oferir-te serveis de consultoria directament relacionats amb l'activitat de la teva agència</td></tr>
-        <tr><th>Base jurídica</th><td><strong>Interès legítim</strong> (art. 6.1.f RGPD), en relació amb l'<strong>art. 19 LOPDGDD</strong>, que presumeix emparat per aquesta base el tractament de dades de contacte de professionals quan es refereixen únicament a la seva condició professional. Hem realitzat i documentat la ponderació exigida, i pots sol·licitar-nos un resum.</td></tr>
-        <tr><th>Canals</th><td>Correu postal i telèfon. <strong>No t'enviarem correu electrònic comercial llevat que ens ho hagis sol·licitat expressament.</strong></td></tr>
-        <tr><th>Conservació</th><td>12 mesos des del contacte si no hi ha resposta. Si t'hi oposes, suprimim les teves dades immediatament i conservem únicament la dada mínima imprescindible per no tornar a contactar-te.</td></tr>
-      </tbody>
-    </table>
-    <p><strong>Tens dret a oposar-te en qualsevol moment i sense justificar el motiu.</strong> N'hi ha prou amb respondre a la carta, dir-ho per telèfon o escriure a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>. Ho farem efectiu en un màxim de 48 hores i de forma permanent.</p>
+      <h3>2.3 Profesionales de agencias inmobiliarias contactados por nuestra iniciativa</h3>
+      <p>Esta es la sección que te aplica <strong>si has recibido una carta o una llamada nuestra sin habernos contactado antes.</strong> Queremos ser completamente transparentes al respecto.</p>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Datos</th><td>Nombre y apellidos, cargo, datos de contacto profesionales, idioma de preferencia y agencia en la que prestas servicios</td></tr>
+          <tr><th>Origen</th><td><strong>Fuentes de acceso público</strong>: la web corporativa de tu agencia, su ficha pública en Google Maps, sus perfiles públicos en portales inmobiliarios, su página de aviso legal y, en su caso, el BORME. <strong>No hemos comprado tus datos a ningún tercero.</strong></td></tr>
+          <tr><th>Finalidad</th><td>Ponernos en contacto contigo, en tu condición profesional, para ofrecerte servicios de consultoría directamente relacionados con la actividad de tu agencia</td></tr>
+          <tr><th>Base jurídica</th><td><strong>Interés legítimo</strong> (art. 6.1.f RGPD), en relación con el <strong>art. 19 LOPDGDD</strong>, que presume amparado por esta base el tratamiento de datos de contacto de profesionales cuando se refieren únicamente a su condición profesional. Hemos realizado y documentado la ponderación exigida, y puedes solicitarnos un resumen.</td></tr>
+          <tr><th>Canales</th><td>Correo postal y teléfono. <strong>No te enviaremos correo electrónico comercial salvo que nos lo hayas solicitado expresamente.</strong></td></tr>
+          <tr><th>Conservación</th><td>12 meses desde el contacto si no hay respuesta. Si te opones, suprimimos tus datos de inmediato y conservamos únicamente el dato mínimo imprescindible para no volver a contactarte.</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Tienes derecho a oponerte en cualquier momento y sin justificar el motivo.</strong> Basta con responder a la carta, decírnoslo por teléfono o escribir a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>. Lo haremos efectivo en un máximo de 48 horas y de forma permanente.</p>
 
-    <h3>2.4 Clients</h3>
-    <table class="data-table">
-      <tbody>
-        <tr><th>Dades</th><td>Identificatives, de contacte, facturació i les necessàries per prestar el servei</td></tr>
-        <tr><th>Finalitat</th><td>Prestació del servei contractat, facturació i obligacions fiscals</td></tr>
-        <tr><th>Base jurídica</th><td>Execució del contracte (art. 6.1.b) i compliment d'obligacions legals (art. 6.1.c)</td></tr>
-        <tr><th>Conservació</th><td>Durada de la relació i, després, els terminis de prescripció fiscal i mercantil aplicables (amb caràcter general, 6 anys)</td></tr>
-      </tbody>
-    </table>
+      <h3>2.4 Clientes</h3>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Datos</th><td>Identificativos, de contacto, facturación y los necesarios para prestar el servicio</td></tr>
+          <tr><th>Finalidad</th><td>Prestación del servicio contratado, facturación y obligaciones fiscales</td></tr>
+          <tr><th>Base jurídica</th><td>Ejecución del contrato (art. 6.1.b) y cumplimiento de obligaciones legales (art. 6.1.c)</td></tr>
+          <tr><th>Conservación</th><td>Duración de la relación y, después, los plazos de prescripción fiscal y mercantil aplicables (con carácter general, 6 años)</td></tr>
+        </tbody>
+      </table>
 
-    <h3>2.5 Dades de tercers a què accedim com a encarregats</h3>
-    <p>Quan prestem serveis de consultoria, podem accedir a dades personals dels clients o empleats de l'agència contractant. En aquest cas <strong>actuem com a encarregats del tractament</strong> (art. 28 RGPD): l'agència és la responsable i decideix sobre aquestes dades, i nosaltres les tractem únicament seguint les seves instruccions documentades i en virtut del corresponent contracte d'encàrrec.</p>
-    <p>Si les teves dades estan al CRM d'una agència que treballa amb nosaltres, <strong>adreça la teva sol·licitud a l'agència</strong>, que n'és la responsable. Si ens arriba a nosaltres, la hi traslladarem sense dilació.</p>
-  </section>
+      <h3>2.5 Datos de terceros a los que accedemos como encargados</h3>
+      <p>Cuando prestamos servicios de consultoría, podemos acceder a datos personales de los clientes o empleados de la agencia contratante. En ese caso <strong>actuamos como encargados del tratamiento</strong> (art. 28 RGPD): la agencia es la responsable y decide sobre esos datos, y nosotros los tratamos únicamente siguiendo sus instrucciones documentadas y en virtud del correspondiente contrato de encargo.</p>
+      <p>Si tus datos están en el CRM de una agencia que trabaja con nosotros, <strong>dirige tu solicitud a la agencia</strong>, que es la responsable. Si nos llega a nosotros, se la trasladaremos sin dilación.</p>
+    </section>
 
-  <hr>
+    <hr>
 
-  <section>
-    <h2>3. Destinataris</h2>
-    <p>No cedim dades personals a tercers, llevat d'obligació legal.</p>
-    <p>Utilitzem proveïdors que actuen com a encarregats del tractament i que han acreditat garanties suficients (art. 28 RGPD):</p>
-    <table class="data-table">
-      <tbody>
-        <tr><th>Tipus de proveïdor</th><th>Finalitat</th></tr>
-        <tr><td>Allotjament web i correu</td><td>Infraestructura</td></tr>
-        <tr><td>Eines ofimàtiques i d'anàlisi</td><td>Gestió interna</td></tr>
-        <tr><td>Serveis de facturació</td><td>Obligacions comptables</td></tr>
-      </tbody>
-    </table>
-  </section>
+    <section>
+      <h2>3. Destinatarios</h2>
+      <p>No cedemos datos personales a terceros, salvo obligación legal.</p>
+      <p>Utilizamos proveedores que actúan como encargados del tratamiento y que han acreditado garantías suficientes (art. 28 RGPD):</p>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Tipo de proveedor</th><th>Finalidad</th></tr>
+          <tr><td>Alojamiento web y correo</td><td>Infraestructura</td></tr>
+          <tr><td>Herramientas ofimáticas y de análisis</td><td>Gestión interna</td></tr>
+          <tr><td>Servicios de facturación</td><td>Obligaciones contables</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-  <section>
-    <h2>4. Transferències internacionals</h2>
-    <p><span class="pending">[PENDENT: completar segons els proveïdors contractats. Si tots tracten dades dins l'EEE, indicar: «No es realitzen transferències internacionals de dades».]</span></p>
-  </section>
+    <section>
+      <h2>4. Transferencias internacionales</h2>
+      <p><span class="pending">[PENDIENTE: completar en función de los proveedores contratados. Si todos tratan datos dentro del EEE, indicar: «No se realizan transferencias internacionales de datos».]</span></p>
+    </section>
 
-  <section>
-    <h2>5. Els teus drets</h2>
-    <p>Pots exercir gratuïtament els següents drets escrivint a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a> o a Passeig Francesc Macià 4, indicant el dret que exerceixes i acompanyant còpia d'un document que acrediti la teva identitat:</p>
-    <table class="data-table">
-      <tbody>
-        <tr><th>Dret</th><th>Què suposa</th></tr>
-        <tr><td><strong>Accés</strong></td><td>Saber quines dades teves tractem i obtenir-ne una còpia</td></tr>
-        <tr><td><strong>Rectificació</strong></td><td>Corregir dades inexactes o incompletes</td></tr>
-        <tr><td><strong>Supressió</strong></td><td>Que eliminem les teves dades quan ja no siguin necessàries</td></tr>
-        <tr><td><strong>Oposició</strong></td><td>Oposar-te al tractament basat en interès legítim. <strong>En prospecció comercial, l'oposició és incondicional: n'hi ha prou amb demanar-ho</strong></td></tr>
-        <tr><td><strong>Limitació</strong></td><td>Que suspenguem el tractament mentre es resol una controvèrsia</td></tr>
-        <tr><td><strong>Portabilitat</strong></td><td>Rebre les teves dades en format estructurat i d'ús comú</td></tr>
-      </tbody>
-    </table>
-    <p>Respondrem en el termini màxim d'<strong>un mes</strong>, prorrogable per dos mesos més si la sol·licitud és complexa, informant-te de la pròrroga.</p>
-    <p>Si consideres que no hem atès correctament la teva sol·licitud, pots reclamar davant l'<strong>Agència Espanyola de Protecció de Dades</strong> (C/ Jorge Juan 6, 28001 Madrid — <a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>), sense perjudici d'acudir prèviament a nosaltres.</p>
-  </section>
+    <section>
+      <h2>5. Tus derechos</h2>
+      <p>Puedes ejercer gratuitamente los siguientes derechos escribiendo a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a> o a Passeig Francesc Macià 4, indicando el derecho que ejercitas y acompañando copia de un documento que acredite tu identidad:</p>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Derecho</th><th>Qué supone</th></tr>
+          <tr><td><strong>Acceso</strong></td><td>Saber qué datos tuyos tratamos y obtener una copia</td></tr>
+          <tr><td><strong>Rectificación</strong></td><td>Corregir datos inexactos o incompletos</td></tr>
+          <tr><td><strong>Supresión</strong></td><td>Que eliminemos tus datos cuando ya no sean necesarios</td></tr>
+          <tr><td><strong>Oposición</strong></td><td>Oponerte al tratamiento basado en interés legítimo. <strong>En prospección comercial, la oposición es incondicional: basta con pedirlo</strong></td></tr>
+          <tr><td><strong>Limitación</strong></td><td>Que suspendamos el tratamiento mientras se resuelve una controversia</td></tr>
+          <tr><td><strong>Portabilidad</strong></td><td>Recibir tus datos en formato estructurado y de uso común</td></tr>
+        </tbody>
+      </table>
+      <p>Responderemos en el plazo máximo de <strong>un mes</strong>, prorrogable por dos meses más si la solicitud es compleja, informándote de la prórroga.</p>
+      <p>Si consideras que no hemos atendido correctamente tu solicitud, puedes reclamar ante la <strong>Agencia Española de Protección de Datos</strong> (C/ Jorge Juan 6, 28001 Madrid — <a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>), sin perjuicio de acudir previamente a nosotros.</p>
+    </section>
 
-  <section>
-    <h2>6. Seguretat</h2>
-    <p>Apliquem les mesures tècniques i organitzatives apropiades (art. 32 RGPD): control d'accés mitjançant credencials individuals, xifratge en trànsit i en repòs, còpies de seguretat periòdiques, registre d'accessos i minimització de les dades tractades.</p>
-    <p>Les dades personals s'emmagatzemen de forma <strong>separada</strong> de la resta d'informació, de manera que una sol·licitud de supressió es pugui executar de forma completa i verificable.</p>
-  </section>
+    <section>
+      <h2>6. Seguridad</h2>
+      <p>Aplicamos las medidas técnicas y organizativas apropiadas (art. 32 RGPD): control de acceso mediante credenciales individuales, cifrado en tránsito y en reposo, copias de seguridad periódicas, registro de accesos y minimización de los datos tratados.</p>
+      <p>Los datos personales se almacenan de forma <strong>separada</strong> del resto de información, de modo que una solicitud de supresión pueda ejecutarse de forma completa y verificable.</p>
+    </section>
 
-  <section>
-    <h2>7. Canvis</h2>
-    <p>Podem actualitzar aquesta política per adaptar-la a canvis normatius o dels nostres serveis. La versió vigent serà sempre la publicada en aquesta pàgina, amb la seva data d'actualització. Si el canvi és substancial i t'afecta, t'ho comunicarem.</p>
-  </section>
+    <section>
+      <h2>7. Cambios</h2>
+      <p>Podemos actualizar esta política para adaptarla a cambios normativos o en nuestros servicios. La versión vigente será siempre la publicada en esta página, con su fecha de actualización. Si el cambio es sustancial y te afecta, te lo comunicaremos.</p>
+    </section>
+  </div>
+
+  <!-- ============ ENGLISH ============ -->
+  <div class="lang lang-en" lang="en">
+    <section>
+      <h2>1. Data controller</h2>
+      <table class="id-table">
+        <tbody>
+          <tr><th>Controller</th><td>Gerard Rius Riu</td></tr>
+          <tr><th>Tax ID (NIF)</th><td>47970617T</td></tr>
+          <tr><th>Address</th><td>Passeig Francesc Macià 4, Barcelona, Spain</td></tr>
+          <tr><th>Email</th><td><a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a></td></tr>
+          <tr><th>Phone</th><td>+34 646082316</td></tr>
+        </tbody>
+      </table>
+      <p>No Data Protection Officer has been appointed, as none of the circumstances under art. 37 GDPR or art. 34 of the Spanish LOPDGDD apply. For any data protection question, you can write to <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>2. What data we process, for what purpose, and under what legal basis</h2>
+
+      <h3>2.1 Website visitors</h3>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Data</th><td>IP address, browser and device type, pages visited</td></tr>
+          <tr><th>Purpose</th><td>Ensuring the site's operation and security; aggregate statistics</td></tr>
+          <tr><th>Legal basis</th><td>Legitimate interest (art. 6.1.f GDPR) in keeping the site operational and secure</td></tr>
+          <tr><th>Retention</th><td>Server logs: 12 months</td></tr>
+        </tbody>
+      </table>
+
+      <h3>2.2 Requesters of the free diagnostic or information</h3>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Data</th><td>Name, email, phone (optional), agency, message</td></tr>
+          <tr><th>Purpose</th><td>Handling your request, carrying out the diagnostic and sending you the result; sending you communications about our services</td></tr>
+          <tr><th>Legal basis</th><td><strong>Your consent</strong> (art. 6.1.a GDPR), given by checking the form's checkbox, and performance of pre-contractual measures (art. 6.1.b)</td></tr>
+          <tr><th>Retention</th><td>24 months from the last contact, or until you withdraw consent</td></tr>
+        </tbody>
+      </table>
+      <p>You can <strong>withdraw your consent at any time</strong> by writing to <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a> or via the unsubscribe link in every communication. Withdrawal does not affect the lawfulness of processing carried out prior to it.</p>
+
+      <h3>2.3 Real estate agency professionals we contact on our own initiative</h3>
+      <p>This is the section that applies to you <strong>if you've received a letter or a call from us without having contacted us first.</strong> We want to be fully transparent about this.</p>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Data</th><td>Full name, job title, professional contact details, preferred language, and the agency you work for</td></tr>
+          <tr><th>Source</th><td><strong>Publicly accessible sources</strong>: your agency's corporate website, its public Google Maps listing, its public profiles on real estate portals, its legal-notice page, and, where applicable, the Spanish Official Companies Registry Gazette (BORME). <strong>We have not purchased your data from any third party.</strong></td></tr>
+          <tr><th>Purpose</th><td>Contacting you, in your professional capacity, to offer you consulting services directly related to your agency's activity</td></tr>
+          <tr><th>Legal basis</th><td><strong>Legitimate interest</strong> (art. 6.1.f GDPR), in connection with <strong>art. 19 of the Spanish LOPDGDD</strong>, which presumes that processing professionals' contact details is covered by this basis when such data refers exclusively to their professional capacity. We have carried out and documented the required balancing test, and you may request a summary from us.</td></tr>
+          <tr><th>Channels</th><td>Postal mail and phone. <strong>We will not send you commercial email unless you have expressly requested it.</strong></td></tr>
+          <tr><th>Retention</th><td>12 months from contact if there's no response. If you object, we delete your data immediately and retain only the minimum data necessary to avoid contacting you again.</td></tr>
+        </tbody>
+      </table>
+      <p><strong>You have the right to object at any time and without giving a reason.</strong> Simply reply to the letter, tell us over the phone, or write to <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>. We will action it within a maximum of 48 hours, permanently.</p>
+
+      <h3>2.4 Clients</h3>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Data</th><td>Identifying, contact, billing data, and whatever is necessary to provide the service</td></tr>
+          <tr><th>Purpose</th><td>Providing the contracted service, billing, and tax obligations</td></tr>
+          <tr><th>Legal basis</th><td>Performance of a contract (art. 6.1.b) and compliance with legal obligations (art. 6.1.c)</td></tr>
+          <tr><th>Retention</th><td>Duration of the relationship and, afterwards, the applicable tax and commercial statute-of-limitations periods (generally 6 years)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>2.5 Third-party data we access as a data processor</h3>
+      <p>When providing consulting services, we may access personal data belonging to the clients or employees of the contracting agency. In that case <strong>we act as a data processor</strong> (art. 28 GDPR): the agency is the data controller and decides on that data, and we process it only following their documented instructions, under the corresponding data processing agreement.</p>
+      <p>If your data is in the CRM of an agency we work with, <strong>direct your request to that agency</strong>, as it is the controller. If it reaches us instead, we will forward it without delay.</p>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>3. Recipients</h2>
+      <p>We do not disclose personal data to third parties, except where legally required.</p>
+      <p>We use providers who act as data processors and who have demonstrated sufficient guarantees (art. 28 GDPR):</p>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Type of provider</th><th>Purpose</th></tr>
+          <tr><td>Web hosting and email</td><td>Infrastructure</td></tr>
+          <tr><td>Office and analytics tools</td><td>Internal management</td></tr>
+          <tr><td>Invoicing services</td><td>Accounting obligations</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>4. International transfers</h2>
+      <p><span class="pending">[PENDING: to be completed based on the providers used. If all of them process data within the EEA, this will state: "No international data transfers are carried out."]</span></p>
+    </section>
+
+    <section>
+      <h2>5. Your rights</h2>
+      <p>You can exercise the following rights free of charge by writing to <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a> or to Passeig Francesc Macià 4, Barcelona, Spain, indicating which right you are exercising and enclosing a copy of a document proving your identity:</p>
+      <table class="data-table">
+        <tbody>
+          <tr><th>Right</th><th>What it means</th></tr>
+          <tr><td><strong>Access</strong></td><td>Finding out what data of yours we process and obtaining a copy</td></tr>
+          <tr><td><strong>Rectification</strong></td><td>Correcting inaccurate or incomplete data</td></tr>
+          <tr><td><strong>Erasure</strong></td><td>Having us delete your data once it's no longer necessary</td></tr>
+          <tr><td><strong>Objection</strong></td><td>Objecting to processing based on legitimate interest. <strong>In commercial prospecting, this objection is unconditional: simply asking is enough</strong></td></tr>
+          <tr><td><strong>Restriction</strong></td><td>Having us suspend processing while a dispute is resolved</td></tr>
+          <tr><td><strong>Portability</strong></td><td>Receiving your data in a structured, commonly used format</td></tr>
+        </tbody>
+      </table>
+      <p>We will respond within a maximum period of <strong>one month</strong>, extendable by a further two months for complex requests, in which case we will inform you of the extension.</p>
+      <p>If you believe we have not properly handled your request, you may file a complaint with the <strong>Spanish Data Protection Agency (AEPD)</strong> (C/ Jorge Juan 6, 28001 Madrid — <a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>), without prejudice to contacting us first.</p>
+    </section>
+
+    <section>
+      <h2>6. Security</h2>
+      <p>We apply appropriate technical and organisational measures (art. 32 GDPR): access control via individual credentials, encryption in transit and at rest, periodic backups, access logging, and data minimisation.</p>
+      <p>Personal data is stored <strong>separately</strong> from other information, so that a deletion request can be executed completely and verifiably.</p>
+    </section>
+
+    <section>
+      <h2>7. Changes</h2>
+      <p>We may update this policy to adapt it to regulatory changes or changes to our services. The version in force will always be the one published on this page, together with its update date. If a change is substantial and affects you, we will notify you.</p>
+    </section>
+  </div>
 </main>
 
 <footer>
   <div class="footer-inner">
     <p>© 2026 datoinmo — Gerard Rius Riu — Barcelona</p>
     <div class="footer-links">
-      <a href="index.html">Inici</a>
-      <a href="avis-legal.html">Avís Legal</a>
-      <a href="privacitat.html">Privacitat</a>
+      <a href="index.html">
+        <span class="lang lang-ca" lang="ca">Inici</span>
+        <span class="lang lang-es" lang="es">Inicio</span>
+        <span class="lang lang-en" lang="en">Home</span>
+      </a>
+      <a href="avis-legal.html">
+        <span class="lang lang-ca" lang="ca">Avís Legal</span>
+        <span class="lang lang-es" lang="es">Aviso Legal</span>
+        <span class="lang lang-en" lang="en">Legal Notice</span>
+      </a>
+      <a href="privacitat.html">
+        <span class="lang lang-ca" lang="ca">Privacitat</span>
+        <span class="lang lang-es" lang="es">Privacidad</span>
+        <span class="lang lang-en" lang="en">Privacy</span>
+      </a>
     </div>
   </div>
 </footer>
+
+<script>
+(function () {
+  var LANGS = ['ca', 'es', 'en'];
+  var KEY = 'datoinmo-lang';
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('[data-set-lang]');
+
+  function setLang(lang, persist) {
+    if (LANGS.indexOf(lang) === -1) return;
+    root.setAttribute('lang', lang);
+    root.setAttribute('data-lang', lang);
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute('aria-pressed', String(buttons[i].dataset.setLang === lang));
+    }
+    if (persist) {
+      try { localStorage.setItem(KEY, lang); } catch (e) {}
+    }
+  }
+
+  function initialLang() {
+    var fromUrl = new URLSearchParams(location.search).get('lang');
+    if (fromUrl && LANGS.indexOf(fromUrl) !== -1) return fromUrl;
+    try {
+      var stored = localStorage.getItem(KEY);
+      if (stored && LANGS.indexOf(stored) !== -1) return stored;
+    } catch (e) {}
+    var nav = (navigator.language || 'ca').slice(0, 2).toLowerCase();
+    return LANGS.indexOf(nav) !== -1 ? nav : 'ca';
+  }
+
+  setLang(initialLang(), false);
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function () {
+      setLang(this.dataset.setLang, true);
+    });
+  }
+})();
+</script>
 
 </body>
 </html>

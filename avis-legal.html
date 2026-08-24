@@ -55,6 +55,12 @@ a{color:inherit}
 
 .shell{width:100%;max-width:var(--shell);margin:0 auto;padding:0 28px}
 
+/* ---------- language visibility ---------- */
+.lang{display:none}
+html[data-lang="ca"] .lang-ca,
+html[data-lang="es"] .lang-es,
+html[data-lang="en"] .lang-en{display:revert}
+
 /* ---------- nav ---------- */
 .nav{border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;max-width:1100px;margin:0 auto;padding:0 28px}
@@ -63,8 +69,21 @@ a{color:inherit}
 .logo-word{font-family:var(--serif);font-weight:500;font-size:1.28rem;letter-spacing:-.01em}
 .logo-word em{color:var(--terracotta);font-style:italic}
 .logo:hover .logo-word{color:var(--petrol)}
+.nav-right{display:flex;align-items:center;gap:18px}
 .back-link{color:var(--muted);text-decoration:none;font-size:.9rem;border-bottom:1px solid var(--line-strong)}
 .back-link:hover{color:var(--terracotta);border-color:var(--terracotta)}
+.switch{display:flex;align-items:center;gap:2px}
+.switch button{
+  appearance:none;background:none;border:0;
+  font:600 .8rem/1 var(--sans);
+  letter-spacing:.06em;
+  color:var(--muted);
+  padding:8px 9px;border-radius:4px;cursor:pointer;
+  transition:color .18s ease,background-color .18s ease;
+}
+.switch button:hover{color:var(--ink)}
+.switch button[aria-pressed="true"]{color:var(--terracotta)}
+.switch .sep{color:var(--line-strong);font-size:.78rem;user-select:none}
 
 /* ---------- legal content ---------- */
 .legal{padding:64px 0 96px}
@@ -73,12 +92,7 @@ a{color:inherit}
   color:var(--terracotta);margin-bottom:14px;
 }
 .legal h1{font-size:clamp(1.9rem,4.2vw,2.6rem);letter-spacing:-.02em;margin-bottom:8px}
-.legal .updated{color:var(--muted);font-size:.9rem;margin-bottom:8px}
-.lang-note{
-  background:var(--bg-alt);border:1px solid var(--line);border-radius:10px;
-  padding:16px 20px;margin:24px 0 40px;font-size:.88rem;color:var(--muted);line-height:1.55;
-}
-.lang-note p + p{margin-top:8px}
+.legal .updated{color:var(--muted);font-size:.9rem;margin-bottom:32px}
 .legal section{padding:32px 0 0}
 .legal h2{font-size:1.35rem;margin-bottom:16px;max-width:none}
 .legal p{margin-bottom:16px;font-size:1rem;line-height:1.7;color:var(--ink)}
@@ -101,103 +115,299 @@ footer p{color:var(--muted);font-size:.86rem}
 
 @media (max-width:600px){
   .footer-inner{flex-direction:column;align-items:flex-start;gap:14px}
+  .nav-right{gap:10px}
 }
 </style>
 </head>
 
 <body>
 
-<header class="nav">
+<header class="nav" id="nav">
   <div class="nav-inner">
-    <a class="logo" href="index.html" aria-label="datoinmo — inici">
+    <a class="logo" href="index.html" aria-label="datoinmo">
       <svg class="logo-icon" viewBox="0 0 64 64" aria-hidden="true">
         <path fill-rule="evenodd" fill="#1F4A40" d="M20 6h24L58 20v24L44 58H20L6 44V20L20 6z M32 24a8 8 0 100 16 8 8 0 000-16z"></path>
         <circle cx="32" cy="32" r="6.4" fill="none" stroke="#C1633D" stroke-width="2"></circle>
       </svg>
       <span class="logo-word">dato<em>i</em>nmo</span>
     </a>
-    <a class="back-link" href="index.html">← Tornar a l'inici</a>
+    <div class="nav-right">
+      <nav class="switch" id="switch">
+        <button type="button" data-set-lang="ca" aria-pressed="true" aria-label="Canviar l'idioma a català">CA</button>
+        <span class="sep">/</span>
+        <button type="button" data-set-lang="es" aria-pressed="false" aria-label="Cambiar el idioma a español">ES</button>
+        <span class="sep">/</span>
+        <button type="button" data-set-lang="en" aria-pressed="false" aria-label="Switch language to English">EN</button>
+      </nav>
+      <a class="back-link" href="index.html">
+        <span class="lang lang-ca" lang="ca">← Inici</span>
+        <span class="lang lang-es" lang="es">← Inicio</span>
+        <span class="lang lang-en" lang="en">← Home</span>
+      </a>
+    </div>
   </div>
 </header>
 
 <main class="legal shell">
-  <span class="eyebrow">Informació legal</span>
-  <h1>Avís Legal</h1>
-  <p class="updated">Versió 1.0 · Última actualització: 21/08/2026</p>
+  <span class="eyebrow">
+    <span class="lang lang-ca" lang="ca">Informació legal</span>
+    <span class="lang lang-es" lang="es">Información legal</span>
+    <span class="lang lang-en" lang="en">Legal information</span>
+  </span>
+  <h1>
+    <span class="lang lang-ca" lang="ca">Avís Legal</span>
+    <span class="lang lang-es" lang="es">Aviso Legal</span>
+    <span class="lang lang-en" lang="en">Legal Notice</span>
+  </h1>
+  <p class="updated">
+    <span class="lang lang-ca" lang="ca">Versió 1.0 · Última actualització: 21/08/2026</span>
+    <span class="lang lang-es" lang="es">Versión 1.0 · Última actualización: 21/08/2026</span>
+    <span class="lang lang-en" lang="en">Version 1.0 · Last updated: 21/08/2026</span>
+  </p>
 
-  <div class="lang-note">
-    <p><strong>ES:</strong> Esta página está publicada únicamente en catalán por ahora. Puedes solicitar una versión traducida escribiendo a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
-    <p><strong>EN:</strong> This page is currently published in Catalan only. You can request a translated version by writing to <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
+  <!-- ============ CATALÀ ============ -->
+  <div class="lang lang-ca" lang="ca">
+    <section id="datos-identificativos">
+      <h2>1. Dades identificatives del prestador</h2>
+      <p>En compliment de l'article 10 de la Llei 34/2002, d'11 de juliol, de Serveis de la Societat de la Informació i de Comerç Electrònic (LSSI-CE):</p>
+      <table class="id-table">
+        <tbody>
+          <tr><th>Titular</th><td>Gerard Rius Riu</td></tr>
+          <tr><th>NIF</th><td>47970617T</td></tr>
+          <tr><th>Domicili</th><td>Passeig Francesc Macià 4</td></tr>
+          <tr><th>Correu electrònic</th><td><a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a></td></tr>
+          <tr><th>Telèfon</th><td>+34 646082316</td></tr>
+          <tr><th>Lloc web</th><td>datoinmo.com</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Activitat:</strong> serveis de consultoria en gestió i anàlisi de dades per al sector immobiliari.</p>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>2. Condicions d'ús</h2>
+      <p>L'accés a aquest lloc web és gratuït i atribueix la condició d'usuari. L'ús del lloc implica l'acceptació plena de les presents condicions.</p>
+      <p>L'usuari es compromet a fer un ús adequat dels continguts i a no emprar-los per incórrer en activitats il·lícites, lesives de drets de tercers, o que puguin danyar, inutilitzar o sobrecarregar el lloc o impedir-ne la utilització normal.</p>
+    </section>
+
+    <section>
+      <h2>3. Propietat intel·lectual i industrial</h2>
+      <p>Tots els continguts del lloc (textos, imatges, disseny gràfic, codi font, logotips, marques i altres signes distintius) són titularitat de Gerard Rius Riu o de tercers que n'han autoritzat l'ús, i estan protegits per la normativa de propietat intel·lectual i industrial.</p>
+      <p>Queda prohibida la seva reproducció, distribució, comunicació pública i transformació sense autorització expressa del titular. Es permet la visualització i impressió per a ús personal i privat.</p>
+    </section>
+
+    <section>
+      <h2>4. Responsabilitat</h2>
+      <p>Gerard Rius Riu no es fa responsable de:</p>
+      <ul>
+        <li>Les interrupcions del servei, retards, errors o fallades derivats de causes alienes al seu control.</li>
+        <li>Els danys ocasionats per la presència de virus o programes maliciosos introduïts per tercers.</li>
+        <li>Els continguts de llocs web de tercers als quals es pugui enllaçar des d'aquest lloc. Els enllaços s'ofereixen únicament a títol informatiu i no impliquen supervisió, aprovació ni recomanació dels seus continguts.</li>
+      </ul>
+      <p>Els continguts de caràcter divulgatiu publicats en aquest lloc tenen finalitat informativa general i <strong>no constitueixen assessorament professional</strong> per a un cas concret.</p>
+    </section>
+
+    <section>
+      <h2>5. Protecció de dades</h2>
+      <p>El tractament de les dades personals recollides a través d'aquest lloc es regeix per la <a href="privacitat.html">Política de Privacitat</a>.</p>
+    </section>
+
+    <section>
+      <h2>6. Comunicacions comercials</h2>
+      <p>De conformitat amb l'article 21 de la LSSI-CE, <strong>únicament trametem comunicacions comercials per correu electrònic a qui les hagi sol·licitat o autoritzat expressament</strong>.</p>
+      <p>Pots revocar el teu consentiment en qualsevol moment, de forma gratuïta i senzilla, mitjançant l'enllaç de baixa inclòs a cada comunicació o escrivint a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
+    </section>
+
+    <section>
+      <h2>7. Legislació aplicable i jurisdicció</h2>
+      <p>Les presents condicions es regeixen per la legislació espanyola. Per a la resolució de qualsevol controvèrsia, les parts se sotmeten als Jutjats i Tribunals del domicili de l'usuari quan aquest tingui la condició de consumidor; en la resta de casos, als Jutjats i Tribunals de Barcelona.</p>
+    </section>
   </div>
 
-  <section id="datos-identificativos">
-    <h2>1. Dades identificatives del prestador</h2>
-    <p>En compliment de l'article 10 de la Llei 34/2002, d'11 de juliol, de Serveis de la Societat de la Informació i de Comerç Electrònic (LSSI-CE):</p>
-    <table class="id-table">
-      <tbody>
-        <tr><th>Titular</th><td>Gerard Rius Riu</td></tr>
-        <tr><th>NIF</th><td>47970617T</td></tr>
-        <tr><th>Domicili</th><td>Passeig Francesc Macià 4</td></tr>
-        <tr><th>Correu electrònic</th><td><a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a></td></tr>
-        <tr><th>Telèfon</th><td>+34 646082316</td></tr>
-        <tr><th>Lloc web</th><td>datoinmo.com</td></tr>
-      </tbody>
-    </table>
-    <p><strong>Activitat:</strong> serveis de consultoria en gestió i anàlisi de dades per al sector immobiliari.</p>
-  </section>
+  <!-- ============ ESPAÑOL ============ -->
+  <div class="lang lang-es" lang="es">
+    <section id="datos-identificativos-es">
+      <h2>1. Datos identificativos del prestador</h2>
+      <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE):</p>
+      <table class="id-table">
+        <tbody>
+          <tr><th>Titular</th><td>Gerard Rius Riu</td></tr>
+          <tr><th>NIF</th><td>47970617T</td></tr>
+          <tr><th>Domicilio</th><td>Passeig Francesc Macià 4</td></tr>
+          <tr><th>Correo electrónico</th><td><a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a></td></tr>
+          <tr><th>Teléfono</th><td>+34 646082316</td></tr>
+          <tr><th>Sitio web</th><td>datoinmo.com</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Actividad:</strong> servicios de consultoría en gestión y análisis de datos para el sector inmobiliario.</p>
+    </section>
 
-  <hr>
+    <hr>
 
-  <section>
-    <h2>2. Condicions d'ús</h2>
-    <p>L'accés a aquest lloc web és gratuït i atribueix la condició d'usuari. L'ús del lloc implica l'acceptació plena de les presents condicions.</p>
-    <p>L'usuari es compromet a fer un ús adequat dels continguts i a no emprar-los per incórrer en activitats il·lícites, lesives de drets de tercers, o que puguin danyar, inutilitzar o sobrecarregar el lloc o impedir-ne la utilització normal.</p>
-  </section>
+    <section>
+      <h2>2. Condiciones de uso</h2>
+      <p>El acceso a este sitio web es gratuito y atribuye la condición de usuario. El uso del sitio implica la aceptación plena de las presentes condiciones.</p>
+      <p>El usuario se compromete a hacer un uso adecuado de los contenidos y a no emplearlos para incurrir en actividades ilícitas, lesivas de derechos de terceros, o que puedan dañar, inutilizar o sobrecargar el sitio o impedir su normal utilización.</p>
+    </section>
 
-  <section>
-    <h2>3. Propietat intel·lectual i industrial</h2>
-    <p>Tots els continguts del lloc (textos, imatges, disseny gràfic, codi font, logotips, marques i altres signes distintius) són titularitat de Gerard Rius Riu o de tercers que n'han autoritzat l'ús, i estan protegits per la normativa de propietat intel·lectual i industrial.</p>
-    <p>Queda prohibida la seva reproducció, distribució, comunicació pública i transformació sense autorització expressa del titular. Es permet la visualització i impressió per a ús personal i privat.</p>
-  </section>
+    <section>
+      <h2>3. Propiedad intelectual e industrial</h2>
+      <p>Todos los contenidos del sitio (textos, imágenes, diseño gráfico, código fuente, logotipos, marcas y demás signos distintivos) son titularidad de Gerard Rius Riu o de terceros que han autorizado su uso, y están protegidos por la normativa de propiedad intelectual e industrial.</p>
+      <p>Queda prohibida su reproducción, distribución, comunicación pública y transformación sin autorización expresa del titular. Se permite la visualización e impresión para uso personal y privado.</p>
+    </section>
 
-  <section>
-    <h2>4. Responsabilitat</h2>
-    <p>Gerard Rius Riu no es fa responsable de:</p>
-    <ul>
-      <li>Les interrupcions del servei, retards, errors o fallades derivats de causes alienes al seu control.</li>
-      <li>Els danys ocasionats per la presència de virus o programes maliciosos introduïts per tercers.</li>
-      <li>Els continguts de llocs web de tercers als quals es pugui enllaçar des d'aquest lloc. Els enllaços s'ofereixen únicament a títol informatiu i no impliquen supervisió, aprovació ni recomanació dels seus continguts.</li>
-    </ul>
-    <p>Els continguts de caràcter divulgatiu publicats en aquest lloc tenen finalitat informativa general i <strong>no constitueixen assessorament professional</strong> per a un cas concret.</p>
-  </section>
+    <section>
+      <h2>4. Responsabilidad</h2>
+      <p>Gerard Rius Riu no se hace responsable de:</p>
+      <ul>
+        <li>Las interrupciones del servicio, retrasos, errores o fallos derivados de causas ajenas a su control.</li>
+        <li>Los daños ocasionados por la presencia de virus o programas maliciosos introducidos por terceros.</li>
+        <li>Los contenidos de sitios web de terceros a los que pueda enlazarse desde este sitio. Los enlaces se ofrecen únicamente a título informativo y no implican supervisión, aprobación ni recomendación de sus contenidos.</li>
+      </ul>
+      <p>Los contenidos de carácter divulgativo publicados en este sitio tienen finalidad informativa general y <strong>no constituyen asesoramiento profesional</strong> para un caso concreto.</p>
+    </section>
 
-  <section>
-    <h2>5. Protecció de dades</h2>
-    <p>El tractament de les dades personals recollides a través d'aquest lloc es regeix per la <a href="privacitat.html">Política de Privacitat</a>.</p>
-  </section>
+    <section>
+      <h2>5. Protección de datos</h2>
+      <p>El tratamiento de los datos personales recogidos a través de este sitio se rige por la <a href="privacitat.html">Política de Privacidad</a>.</p>
+    </section>
 
-  <section>
-    <h2>6. Comunicacions comercials</h2>
-    <p>De conformitat amb l'article 21 de la LSSI-CE, <strong>únicament trametem comunicacions comercials per correu electrònic a qui les hagi sol·licitat o autoritzat expressament</strong>.</p>
-    <p>Pots revocar el teu consentiment en qualsevol moment, de forma gratuïta i senzilla, mitjançant l'enllaç de baixa inclòs a cada comunicació o escrivint a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
-  </section>
+    <section>
+      <h2>6. Comunicaciones comerciales</h2>
+      <p>De conformidad con el artículo 21 de la LSSI-CE, <strong>únicamente remitimos comunicaciones comerciales por correo electrónico a quienes las hayan solicitado o autorizado expresamente</strong>.</p>
+      <p>Puedes revocar tu consentimiento en cualquier momento, de forma gratuita y sencilla, mediante el enlace de baja incluido en cada comunicación o escribiendo a <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
+    </section>
 
-  <section>
-    <h2>7. Legislació aplicable i jurisdicció</h2>
-    <p>Les presents condicions es regeixen per la legislació espanyola. Per a la resolució de qualsevol controvèrsia, les parts se sotmeten als Jutjats i Tribunals del domicili de l'usuari quan aquest tingui la condició de consumidor; en la resta de casos, als Jutjats i Tribunals de Barcelona.</p>
-  </section>
+    <section>
+      <h2>7. Legislación aplicable y jurisdicción</h2>
+      <p>Las presentes condiciones se rigen por la legislación española. Para la resolución de cualquier controversia, las partes se someten a los Juzgados y Tribunales del domicilio del usuario cuando éste tenga la condición de consumidor; en el resto de casos, a los Juzgados y Tribunales de Barcelona.</p>
+    </section>
+  </div>
+
+  <!-- ============ ENGLISH ============ -->
+  <div class="lang lang-en" lang="en">
+    <section id="datos-identificativos-en">
+      <h2>1. Identifying information of the service provider</h2>
+      <p>In compliance with article 10 of Spanish Law 34/2002, of 11 July, on Information Society Services and Electronic Commerce (LSSI-CE):</p>
+      <table class="id-table">
+        <tbody>
+          <tr><th>Owner</th><td>Gerard Rius Riu</td></tr>
+          <tr><th>Tax ID (NIF)</th><td>47970617T</td></tr>
+          <tr><th>Address</th><td>Passeig Francesc Macià 4, Barcelona, Spain</td></tr>
+          <tr><th>Email</th><td><a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a></td></tr>
+          <tr><th>Phone</th><td>+34 646082316</td></tr>
+          <tr><th>Website</th><td>datoinmo.com</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Activity:</strong> data management and analysis consulting services for the real estate sector.</p>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>2. Terms of use</h2>
+      <p>Access to this website is free and grants the condition of user. Use of the website implies full acceptance of these terms.</p>
+      <p>The user agrees to make appropriate use of the content and not to use it to engage in unlawful activities, activities that infringe third-party rights, or activities that could damage, disable or overload the website or prevent its normal use.</p>
+    </section>
+
+    <section>
+      <h2>3. Intellectual and industrial property</h2>
+      <p>All content on this website (text, images, graphic design, source code, logos, trademarks and other distinctive signs) is owned by Gerard Rius Riu or by third parties who have authorised its use, and is protected by intellectual and industrial property regulations.</p>
+      <p>Reproduction, distribution, public communication and transformation of this content without the express authorisation of the owner is prohibited. Viewing and printing for personal and private use is permitted.</p>
+    </section>
+
+    <section>
+      <h2>4. Liability</h2>
+      <p>Gerard Rius Riu is not liable for:</p>
+      <ul>
+        <li>Service interruptions, delays, errors or failures arising from causes beyond their control.</li>
+        <li>Damage caused by viruses or malicious software introduced by third parties.</li>
+        <li>The content of third-party websites that may be linked to from this site. Links are provided for informational purposes only and do not imply supervision, approval or endorsement of their content.</li>
+      </ul>
+      <p>Informational content published on this site is intended for general informational purposes only and <strong>does not constitute professional advice</strong> for any specific case.</p>
+    </section>
+
+    <section>
+      <h2>5. Data protection</h2>
+      <p>The processing of personal data collected through this website is governed by the <a href="privacitat.html">Privacy Policy</a>.</p>
+    </section>
+
+    <section>
+      <h2>6. Commercial communications</h2>
+      <p>In accordance with article 21 of the LSSI-CE, <strong>we only send commercial communications by email to those who have requested or expressly authorised them</strong>.</p>
+      <p>You can revoke your consent at any time, free of charge and easily, via the unsubscribe link included in every communication or by writing to <a href="mailto:gerard@datoinmo.com">gerard@datoinmo.com</a>.</p>
+    </section>
+
+    <section>
+      <h2>7. Applicable law and jurisdiction</h2>
+      <p>These terms are governed by Spanish law. For the resolution of any dispute, the parties submit to the Courts of the user's domicile when the user is a consumer; in all other cases, to the Courts of Barcelona.</p>
+    </section>
+  </div>
 </main>
 
 <footer>
   <div class="footer-inner">
     <p>© 2026 datoinmo — Gerard Rius Riu — Barcelona</p>
     <div class="footer-links">
-      <a href="index.html">Inici</a>
-      <a href="avis-legal.html">Avís Legal</a>
-      <a href="privacitat.html">Privacitat</a>
+      <a href="index.html">
+        <span class="lang lang-ca" lang="ca">Inici</span>
+        <span class="lang lang-es" lang="es">Inicio</span>
+        <span class="lang lang-en" lang="en">Home</span>
+      </a>
+      <a href="avis-legal.html">
+        <span class="lang lang-ca" lang="ca">Avís Legal</span>
+        <span class="lang lang-es" lang="es">Aviso Legal</span>
+        <span class="lang lang-en" lang="en">Legal Notice</span>
+      </a>
+      <a href="privacitat.html">
+        <span class="lang lang-ca" lang="ca">Privacitat</span>
+        <span class="lang lang-es" lang="es">Privacidad</span>
+        <span class="lang lang-en" lang="en">Privacy</span>
+      </a>
     </div>
   </div>
 </footer>
+
+<script>
+(function () {
+  var LANGS = ['ca', 'es', 'en'];
+  var KEY = 'datoinmo-lang';
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('[data-set-lang]');
+
+  function setLang(lang, persist) {
+    if (LANGS.indexOf(lang) === -1) return;
+    root.setAttribute('lang', lang);
+    root.setAttribute('data-lang', lang);
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute('aria-pressed', String(buttons[i].dataset.setLang === lang));
+    }
+    if (persist) {
+      try { localStorage.setItem(KEY, lang); } catch (e) {}
+    }
+  }
+
+  function initialLang() {
+    var fromUrl = new URLSearchParams(location.search).get('lang');
+    if (fromUrl && LANGS.indexOf(fromUrl) !== -1) return fromUrl;
+    try {
+      var stored = localStorage.getItem(KEY);
+      if (stored && LANGS.indexOf(stored) !== -1) return stored;
+    } catch (e) {}
+    var nav = (navigator.language || 'ca').slice(0, 2).toLowerCase();
+    return LANGS.indexOf(nav) !== -1 ? nav : 'ca';
+  }
+
+  setLang(initialLang(), false);
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function () {
+      setLang(this.dataset.setLang, true);
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
