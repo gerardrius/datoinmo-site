@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ca" data-lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baixa — datoinmo</title>
+<meta name="description" content="Dona't de baixa de les comunicacions de datoinmo en un clic.">
+<meta name="robots" content="noindex">
+<meta name="author" content="Gerard Rius Riu">
+<meta name="theme-color" content="#F6F1E7">
+<link rel="canonical" href="https://datoinmo.com/baixa.html">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F6F1E7'/%3E%3Cpath fill-rule='evenodd' fill='%231F4A40' d='M20 12h24l10 10v20L44 52H20L10 42V22L20 12z M32 22a10 10 0 100 20 10 10 0 000-20z'/%3E%3Ccircle cx='32' cy='32' r='7.4' fill='none' stroke='%23C1633D' stroke-width='2.4'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,72,400;0,72,500;0,72,600;1,72,500;1,72,600&family=Karla:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,72,400;0,72,500;0,72,600;1,72,500;1,72,600&family=Karla:wght@400;500;600;700&display=swap">
+</noscript>
+
+<style>
+:root{
+  --bg:#F6F1E7;
+  --bg-alt:#EFE6D3;
+  --ink:#24211D;
+  --muted:#5b5346;
+  --petrol:#1F4A40;
+  --petrol-hover:#2c5c50;
+  --terracotta:#C1633D;
+  --terracotta-hover:#a84f30;
+  --ochre:#E3A63E;
+  --line:rgba(36,33,29,.12);
+  --line-strong:rgba(36,33,29,.22);
+  --sans:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --shell:560px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.6;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1{font-family:var(--serif);font-weight:600;line-height:1.2;letter-spacing:-.01em;margin:0;color:var(--ink)}
+p{margin:0}
+a{color:inherit}
+
+.shell{width:100%;max-width:var(--shell);margin:0 auto;padding:0 28px}
+
+/* ---------- language visibility ---------- */
+.lang{display:none}
+html[data-lang="ca"] .lang-ca,
+html[data-lang="es"] .lang-es,
+html[data-lang="en"] .lang-en{display:revert}
+
+/* ---------- nav ---------- */
+.nav{border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;max-width:1100px;margin:0 auto;padding:0 28px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.logo-icon{width:26px;height:26px;flex:none}
+.logo-word{font-family:var(--serif);font-weight:500;font-size:1.28rem;letter-spacing:-.01em}
+.logo-word em{color:var(--terracotta);font-style:italic}
+.logo:hover .logo-word{color:var(--petrol)}
+.nav-right{display:flex;align-items:center;gap:18px}
+.switch{display:flex;align-items:center;gap:2px}
+.switch button{
+  appearance:none;background:none;border:0;
+  font:600 .8rem/1 var(--sans);
+  letter-spacing:.06em;
+  color:var(--muted);
+  padding:8px 9px;border-radius:4px;cursor:pointer;
+  transition:color .18s ease,background-color .18s ease;
+}
+.switch button:hover{color:var(--ink)}
+.switch button[aria-pressed="true"]{color:var(--terracotta)}
+.switch .sep{color:var(--line-strong);font-size:.78rem;user-select:none}
+
+/* ---------- content ---------- */
+.wrap{padding:80px 0 96px;min-height:60vh;display:flex;align-items:center}
+.card{
+  width:100%;
+  background:var(--bg-alt);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:40px 36px;
+  text-align:center;
+}
+.card h1{font-size:clamp(1.5rem,4vw,1.9rem);margin-bottom:14px}
+.card p{color:var(--muted);font-size:1rem;line-height:1.6;margin-bottom:8px}
+.email-chip{
+  display:inline-block;margin:14px 0 22px;padding:6px 14px;
+  background:var(--bg);border:1px solid var(--line-strong);border-radius:999px;
+  font-size:.92rem;color:var(--ink);font-weight:600;
+}
+.btn{
+  display:inline-block;
+  background:var(--terracotta);
+  color:var(--bg);
+  font-weight:600;
+  font-size:1rem;
+  text-decoration:none;
+  padding:14px 28px;
+  border-radius:6px;
+  border:0;
+  cursor:pointer;
+  font-family:inherit;
+  transition:background-color .18s ease,transform .15s ease-out;
+}
+.btn:hover{background:var(--terracotta-hover)}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.status{margin-top:18px;font-size:.92rem;min-height:1.4em}
+.status.success{color:var(--petrol)}
+.status.error{color:var(--terracotta-hover)}
+.fine{margin-top:28px;font-size:.82rem;color:var(--muted)}
+.fine a{color:var(--terracotta);text-decoration:underline}
+
+@media (max-width:600px){
+  .card{padding:32px 22px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html" aria-label="datoinmo">
+      <svg class="logo-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path fill-rule="evenodd" fill="#1F4A40" d="M20 6h24L58 20v24L44 58H20L6 44V20L20 6z M32 24a8 8 0 100 16 8 8 0 000-16z"></path>
+        <circle cx="32" cy="32" r="6.4" fill="none" stroke="#C1633D" stroke-width="2"></circle>
+      </svg>
+      <span class="logo-word">dato<em>i</em>nmo</span>
+    </a>
+    <div class="nav-right">
+      <nav class="switch" id="switch">
+        <button type="button" data-set-lang="ca" aria-pressed="true" aria-label="Canviar l'idioma a català">CA</button>
+        <span class="sep">/</span>
+        <button type="button" data-set-lang="es" aria-pressed="false" aria-label="Cambiar el idioma a español">ES</button>
+        <span class="sep">/</span>
+        <button type="button" data-set-lang="en" aria-pressed="false" aria-label="Switch language to English">EN</button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="wrap shell">
+  <div class="card">
+    <div id="baixa-form">
+      <h1>
+        <span class="lang lang-ca" lang="ca">Vols deixar de rebre comunicacions?</span>
+        <span class="lang lang-es" lang="es">¿Quieres dejar de recibir comunicaciones?</span>
+        <span class="lang lang-en" lang="en">Want to stop receiving emails?</span>
+      </h1>
+      <p>
+        <span class="lang lang-ca" lang="ca">Confirma-ho amb un clic i no rebràs més comunicacions comercials de datoinmo a aquesta adreça.</span>
+        <span class="lang lang-es" lang="es">Confírmalo con un clic y no recibirás más comunicaciones comerciales de datoinmo en esta dirección.</span>
+        <span class="lang lang-en" lang="en">Confirm with one click and you won't receive any more commercial emails from datoinmo at this address.</span>
+      </p>
+      <div class="email-chip" id="email-chip">—</div>
+      <div>
+        <button class="btn" id="baixa-btn" type="button">
+          <span class="lang lang-ca" lang="ca">Sí, donar-me de baixa</span>
+          <span class="lang lang-es" lang="es">Sí, darme de baja</span>
+          <span class="lang lang-en" lang="en">Yes, unsubscribe me</span>
+        </button>
+      </div>
+      <p class="status" id="baixa-status" role="status" aria-live="polite"></p>
+    </div>
+
+    <div id="no-email" style="display:none">
+      <h1>
+        <span class="lang lang-ca" lang="ca">Falta l'adreça</span>
+        <span class="lang lang-es" lang="es">Falta la dirección</span>
+        <span class="lang lang-en" lang="en">Missing address</span>
+      </h1>
+      <p>
+        <span class="lang lang-ca" lang="ca">Aquest enllaç hauria d'incloure la teva adreça de correu. Si has arribat aquí manualment, escriu-nos directament.</span>
+        <span class="lang lang-es" lang="es">Este enlace debería incluir tu dirección de correo. Si has llegado aquí manualmente, escríbenos directamente.</span>
+        <span class="lang lang-en" lang="en">This link should include your email address. If you got here manually, just email us directly.</span>
+      </p>
+    </div>
+
+    <p class="fine">
+      <span class="lang lang-ca" lang="ca">La processarem en un màxim de 48 hores. Més informació a la <a href="privacitat.html">Política de Privacitat</a>.</span>
+      <span class="lang lang-es" lang="es">La procesaremos en un máximo de 48 horas. Más información en la <a href="privacitat.html">Política de Privacidad</a>.</span>
+      <span class="lang lang-en" lang="en">We'll process it within 48 hours. More information in the <a href="privacitat.html">Privacy Policy</a>.</span>
+    </p>
+  </div>
+</main>
+
+<script>
+(function () {
+  var LANGS = ['ca', 'es', 'en'];
+  var KEY = 'datoinmo-lang';
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('[data-set-lang]');
+
+  function setLang(lang, persist) {
+    if (LANGS.indexOf(lang) === -1) return;
+    root.setAttribute('lang', lang);
+    root.setAttribute('data-lang', lang);
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute('aria-pressed', String(buttons[i].dataset.setLang === lang));
+    }
+    if (persist) { try { localStorage.setItem(KEY, lang); } catch (e) {} }
+  }
+
+  function initialLang() {
+    var fromUrl = new URLSearchParams(location.search).get('lang');
+    if (fromUrl && LANGS.indexOf(fromUrl) !== -1) return fromUrl;
+    try {
+      var stored = localStorage.getItem(KEY);
+      if (stored && LANGS.indexOf(stored) !== -1) return stored;
+    } catch (e) {}
+    var nav = (navigator.language || 'ca').slice(0, 2).toLowerCase();
+    return LANGS.indexOf(nav) !== -1 ? nav : 'ca';
+  }
+
+  setLang(initialLang(), false);
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function () { setLang(this.dataset.setLang, true); });
+  }
+
+  var email = new URLSearchParams(location.search).get('email');
+  var msg = {
+    success: { ca: 'Fet! Hem rebut la teva sol·licitud.', es: '¡Hecho! Hemos recibido tu solicitud.', en: "Done! We've received your request." },
+    error: { ca: 'Alguna cosa ha fallat. Escriu-nos a gerard@datoinmo.com.', es: 'Algo ha fallado. Escríbenos a gerard@datoinmo.com.', en: 'Something went wrong. Email us at gerard@datoinmo.com.' }
+  };
+
+  if (!email) {
+    document.getElementById('baixa-form').style.display = 'none';
+    document.getElementById('no-email').style.display = 'block';
+    return;
+  }
+
+  document.getElementById('email-chip').textContent = email;
+
+  var btn = document.getElementById('baixa-btn');
+  var status = document.getElementById('baixa-status');
+
+  btn.addEventListener('click', function () {
+    btn.disabled = true;
+    status.textContent = '';
+    status.className = 'status';
+    var lang = root.getAttribute('data-lang') || 'ca';
+    var fd = new FormData();
+    fd.append('access_key', '36dfe5c6-a7ca-4a16-a2e0-0ea986976367');
+    fd.append('subject', 'BAIXA sol·licitada — ' + email);
+    fd.append('from_name', 'datoinmo baixa');
+    fd.append('email', email);
+    fd.append('message', 'Sol·licitud de baixa des de datoinmo.com/baixa.html\nAdreça a suprimir: ' + email + '\nData: ' + new Date().toISOString());
+
+    fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: fd })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.success) {
+          status.textContent = msg.success[lang];
+          status.className = 'status success';
+          btn.style.display = 'none';
+        } else {
+          status.textContent = msg.error[lang];
+          status.className = 'status error';
+          btn.disabled = false;
+        }
+      })
+      .catch(function () {
+        status.textContent = msg.error[lang];
+        status.className = 'status error';
+        btn.disabled = false;
+      });
+  });
+})();
+</script>
+
+</body>
+</html>
